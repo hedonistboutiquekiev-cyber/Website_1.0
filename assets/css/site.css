@@ -2517,11 +2517,11 @@ footer.footer{
 
     display: none;
 
-    background: rgba(88, 28, 135, 0.7);
+    background: rgba(220, 38, 38, 0.7);
 
-    border: 1px solid rgba(147, 51, 234, 0.5);
+    border: 1px solid rgba(239, 68, 68, 0.5);
 
-    box-shadow: 0 0 20px rgba(147, 51, 234, 0.3), inset 0 0 12px rgba(147, 51, 234, 0.1);
+    box-shadow: 0 0 20px rgba(220, 38, 38, 0.3), inset 0 0 12px rgba(220, 38, 38, 0.1);
 
     opacity: 1;
 
