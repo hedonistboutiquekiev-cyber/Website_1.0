@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Albamen Space Discovery</title>
+
+    <link rel="stylesheet" href="/assets/css/site.css" />
+
+    <style> * { box-sizing: border-box; } body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; color: #ffffff; line-height: 1.6; overflow-x: hidden; } @media (min-width: 768px) { body { background-attachment: scroll !important; background-size: cover !important; } } h1,h2,h3,h4,h5,h6 { margin: 0; font-weight: 600; } p { margin: 0; } a { color: #8ab4f8; text-decoration: none; } .container { width: 90%; max-width: 1200px; margin: 0 auto; } /* ========================= GLOW CONTAINERS (NO TEXT GLOW) ========================= */ .glow-box{ border: 1px solid rgba(148, 163, 184, 0.28); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-radius: 18px; padding: 18px 18px; box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.12), 0 12px 40px rgba(0, 0, 0, 0.65), 0 0 28px rgba(56, 189, 248, 0.18); } .glow-box.glow-strong{ box-shadow: 0 0 0 1px rgba(244, 114, 182, 0.14), 0 18px 60px rgba(0, 0, 0, 0.72), 0 0 40px rgba(168, 85, 247, 0.22), 0 0 28px rgba(56, 189, 248, 0.18); } .glow-box.compact{ padding: 14px 14px; border-radius: 16px; } /* Slight container glow for existing cards (still NO text glow) */ .feature-card, .timeline-item-content, .planet-content, .value-card{ box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55), 0 0 24px rgba(56, 189, 248, 0.12); } /* ========================= HERO ========================= */
+.hero {
+  min-height: 80vh;
+  padding: 160px 0 80px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Background is handled by body/site.css, but we ensure content is centered */
+}
+.hero-inner {
+  width: min(920px, 92vw);
+}
+.hero-title {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+.title-line-1 {
+  display: block;
+  color: #ffffff;
+}
+.title-line-2 {
+  display: block;
+  background: linear-gradient(135deg, #a855f7 0%, #ec4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  /* Fallback */
+  text-shadow: 0 0 30px rgba(168, 85, 247, 0.3);
+}
+.hero-subtitle {
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  color: #cbd5e1;
+  margin-bottom: 2.5rem;
+  font-weight: 400;
+}
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  border-radius: 99px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  cursor: pointer;
+  border: none;
+}
+.btn-primary {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  color: #ffffff;
+  box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.4);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 35px -5px rgba(99, 102, 241, 0.5);
+}
+.btn-outline {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #e2e8f0;
+}
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+.btn svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+/* ========================= NEW CUSTOM STYLES (Screenshot Match) ========================= */
+.text-gradient-pink { background: linear-gradient(to right, #ec4899, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.text-gradient-blue { background: linear-gradient(to right, #3b82f6, #06b6d4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.text-white { color: #ffffff; }
+
+/* Fill celestial bodies with realistic radial gradients */
+.celestial-body { border: 1px solid rgba(255,255,255,0.06); }
+.celestial-body.sun { background: radial-gradient(circle at 35% 35%, #ffeb3b 0%, #ffc107 40%, #ff9800 70%, #ff4500 100%) !important; box-shadow: 0 0 40px var(--glow-color), 0 0 18px rgba(255,255,255,0.03); }
+.celestial-body.planet { box-shadow: 0 0 20px var(--glow-color); }
+
+/* Planet-specific gradients (realistic colors) */
+.celestial-body[data-id="mercury"] { background: radial-gradient(circle at 40% 40%, #d4d4d4 0%, #9b9b9b 50%, #6b6b6b 100%) !important; }
+.celestial-body[data-id="venus"] { background: radial-gradient(circle at 35% 35%, #fff5d6 0%, #f5d547 40%, #e3bb76 70%, #d4a145 100%) !important; }
+.celestial-body[data-id="earth"] { background: radial-gradient(circle at 40% 40%, #4a9fd8 0%, #2b7ab8 40%, #1e5a8e 70%, #0d3b66 100%) !important; }
+.celestial-body[data-id="mars"] { background: radial-gradient(circle at 35% 35%, #e8a868 0%, #d97a3c 40%, #bf5b2e 70%, #8b3a1d 100%) !important; }
+.celestial-body[data-id="jupiter"] { background: radial-gradient(circle at 40% 40%, #d4a574 0%, #c99055 30%, #9d6e42 60%, #6b4423 100%) !important; }
+.celestial-body[data-id="saturn"] { background: radial-gradient(circle at 35% 35%, #dfc87f 0%, #c5ab6e 40%, #a68f4f 70%, #7a6b38 100%) !important; }
+.celestial-body[data-id="uranus"] { background: radial-gradient(circle at 40% 40%, #e0f7f9 0%, #b5e3e3 40%, #7dd3d3 70%, #4a9fa8 100%) !important; }
+.celestial-body[data-id="neptune"] { background: radial-gradient(circle at 35% 35%, #5a9fdb 0%, #4b70dd 40%, #3b4fc4 70%, #1f2a6b 100%) !important; }
+
+/* Specific class for the word Gazegeni */
+.gazegeni { color: #0ea5e9 !important; -webkit-text-fill-color: #0ea5e9 !important; background: none !important; text-shadow: 0 0 10px rgba(14,165,233,0.18); }
+
+.tag-pill { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: 99px; font-size: 0.8rem; font-weight: 700; margin-bottom: 1.2rem; text-transform: uppercase; letter-spacing: 0.8px; }
+.tag-pill.outline { border: 1px solid rgba(255, 255, 255, 0.2); background: rgba(255, 255, 255, 0.05); color: #cbd5e1; }
+.tag-pill.orange { background: rgba(249, 115, 22, 0.15); border: 1px solid rgba(249, 115, 22, 0.4); color: #fb923c; }
+.tag-pill.blue { background: rgba(59, 130, 246, 0.15); border: 1px solid rgba(59, 130, 246, 0.4); color: #60a5fa; }
+
+.section-header-center { text-align: center; margin-bottom: 4rem; display: flex; flex-direction: column; align-items: center; }
+.section-header-center h2 { font-size: 3rem; line-height: 1.1; margin-bottom: 1rem; }
+.section-header-center p { font-size: 1.1rem; color: #94a3b8; max-width: 600px; }
+
+/* Timeline specific updates */
+.timeline-card { background: #0f172a; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 24px; padding: 32px; position: relative; overflow: hidden; }
+.timeline-card .year { color: #3b82f6; font-weight: 700; font-size: 0.9rem; margin-bottom: 8px; display: block; }
+.timeline-card h3 { font-size: 1.5rem; color: white; margin-bottom: 6px; }
+.timeline-card .role { font-size: 0.95rem; font-weight: 600; margin-bottom: 16px; display: inline-block; }
+.timeline-card p { color: #94a3b8; font-size: 0.95rem; line-height: 1.6; }
+
+.timeline-icon-circle { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; box-shadow: 0 0 0 6px #020617; z-index: 2; position: absolute; left: 50%; top: 20px; transform: translateX(-50%); }
+.timeline-icon-circle svg { width: 24px; height: 24px; fill: currentColor; }
+.bg-gradient-blue { background: linear-gradient(135deg, #3b82f6, #2563eb); }
+.bg-gradient-purple { background: linear-gradient(135deg, #a855f7, #7c3aed); }
+.bg-gradient-pink { background: linear-gradient(135deg, #ec4899, #db2777); }
+
+.timeline-line-gradient { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, rgba(59,130,246,0), #3b82f6 20%, #a855f7 80%, rgba(168,85,247,0)); transform: translateX(-50%); }
+
+/* Quote Section */
+.quote-icon { width: 80px; height: 80px; background: linear-gradient(135deg, #3b82f6, #6366f1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 32px; box-shadow: 0 20px 40px -10px rgba(59, 130, 246, 0.5); }
+.quote-icon svg { width: 40px; height: 40px; color: white; }
+.quote-text { font-size: 2.8rem; font-weight: 800; line-height: 1.2; color: white; margin-bottom: 2rem; }
+.quote-author { font-size: 1rem; color: #94a3b8; }
+.quote-author strong { color: white; display: block; margin-bottom: 4px; }
+
+/* Values */
+.value-box { background: #0f172a; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 24px; padding: 40px 32px; text-align: center; height: 100%; transition: transform 0.2s; }
+.value-box:hover { transform: translateY(-8px); border-color: rgba(255, 255, 255, 0.15); }
+.value-icon-box { width: 64px; height: 64px; border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; }
+.value-icon-box svg { width: 32px; height: 32px; }
+.bg-purple-soft { background: rgba(168, 85, 247, 0.15); color: #a855f7; }
+.bg-blue-soft { background: rgba(59, 130, 246, 0.15); color: #3b82f6; }
+.bg-pink-soft { background: rgba(236, 72, 153, 0.15); color: #ec4899; }
+.value-box h3 { font-size: 1.25rem; color: white; margin-bottom: 12px; }
+.value-box p { color: #94a3b8; font-size: 0.95rem; line-height: 1.6; }
+
+/* Book Section specific */
+.book-container { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 60px; align-items: center; }
+.book-features { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 32px 0; }
+.book-feature { display: flex; align-items: center; gap: 12px; font-size: 0.95rem; color: #cbd5e1; }
+.book-feature-icon { width: 36px; height: 36px; border-radius: 10px; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; color: #a855f7; flex-shrink: 0; }
+.book-feature-icon svg { width: 18px; height: 18px; }
+.rating-stars { color: #fbbf24; margin-bottom: 16px; display: flex; gap: 4px; align-items: center; font-size: 0.9rem; color: #cbd5e1; }
+.rating-stars svg { width: 18px; height: 18px; fill: #fbbf24; }
+.book-buttons { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-book-primary { background: #3b82f6; color: white; border-radius: 12px; padding: 12px 24px; font-weight: 600; transition: 0.2s; }
+.btn-book-primary:hover { background: #2563eb; }
+.btn-book-secondary { background: #a855f7; color: white; border-radius: 12px; padding: 12px 24px; font-weight: 600; transition: 0.2s; }
+.btn-book-secondary:hover { background: #9333ea; }
+.btn-book-outline { background: rgba(13, 42, 87, 0.85); border: 1px solid rgba(255,255,255,0.2); color: white; border-radius: 12px; padding: 12px 24px; font-weight: 600; transition: 0.2s; }
+.btn-book-outline:hover { background: rgba(255,255,255,0.05); }
+
+@media (max-width: 900px) {
+  .book-container { grid-template-columns: 1fr; text-align: center; }
+  .book-features { text-align: left; }
+  .book-buttons { justify-content: center; }
+  .section-header-center h2 { font-size: 2rem; }
+  .quote-text { font-size: 1.8rem; }
+}
+</style>
+  </head>
+
+  <body>
+    <div data-include-html="/header-en.html"></div>
+
+    <section class="hero">
+      <div class="hero-inner">
+        <!-- Removed glow-box per user design request -->
+        <h1 class="hero-title">
+          <span class="title-line-1">Ready for space...</span>
+          <span class="title-line-2">Fasten your seatbelt.</span>
+        </h1>
+        <p class="hero-subtitle">Explore the universe with Albamen.</p>
+
+        <div class="hero-buttons">
+          <a href="https://albamen.space/#" class="btn btn-primary">
+            <!-- Rocket Icon -->
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M13.13 22.19l-1.63-3.83c-.12-.28-.02-.6.23-.78l.02-.02c.26-.18.6-.17.84.04l2.67 2.36c.26.23.65.2.88-.07l3.69-4.22c.23-.26.2-.65-.07-.88l-2.36-2.67c-.21-.24-.22-.58-.04-.84l.02-.02c.18-.25.5-.35.78-.23l3.83 1.63c.53.23 1.13-.15 1.13-.73V5c0-1.66-1.34-3-3-3H4c-1.66 0-3 1.34-3 3v6.94c0 .58 1.54 1.2 1.13.73l1.63-3.83c.12-.28.44-.38.72-.26l.02.01c.28.12.38.44.26.72l-1.63 3.83c-.23.53.15 1.13.73 1.13h6.94c.58 0 1.2-1.54.73-1.13l-3.83-1.63c-.28-.12-.38-.44-.26-.72l.01-.02c.12-.28.44-.38.72-.26l3.83 1.63c.53.23 1.13-.15 1.13-.73V5c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v6.94c0 .58.42.73.73.73h6.94c.58 0 1.2.42.73.73l-1.63 3.83c-.12.28-.02.6.23.78l.02.02c.26.18.6.17.84-.04l2.67-2.36c.26-.23.65-.2.88.07l3.69 4.22c.23.26.2.65-.07.88l-2.36 2.67c-.21.24-.22.58-.04.84l.02.02c.18.25.5.35.78.23l3.83-1.63c.53-.23.15-1.13-.73-1.13z M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z m-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93z m6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+              <!-- Using a simple rocket path instead -->
+              <path d="M12 2.5s-4 5-4 9c0 3.5 2 5.5 4 5.5s4-2 4-5.5c0-4-4-9-4-9z M12 15c-1 0-2-1-2-2.5s1-4 2-4 2 2.5 2 4-1 2.5-2 2.5z M7 14c-1.5 0-3 1.5-3 3s2 3 4 3 1-3 1-3-1-2-2-3z M17 14c-1 0-2 2-2 3s2 3 4 3 3-1.5 3-3-2.5-3-4-3z M12 18c-1.5 0-2 1.5-2 2s1.5 2 2 2 2-1.5 2-2-.5-2-2-2z"/>
+            </svg>
+            Start Exploring
+          </a>
+          
+          <a href="#book-section" class="btn btn-outline">
+            <!-- Book Icon -->
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/>
+            </svg>
+            Albamen and Lara in Space
+          </a>
+        </div>
+      </div>
+    </section>
+    
+    <!-- ========================= TIMELINE SECTION ========================= -->
+    <section class="timeline-section container">
+      <div class="section-header-center">
+        <div class="tag-pill outline">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:6px"><path d="M13.13 22.19l-1.63-3.83c-.12-.28-.02-.6.23-.78l.02-.02c.26-.18.6-.17.84.04l2.67 2.36c.26.23.65.2.88-.07l3.69-4.22c.23-.26.2-.65-.07-.88l-2.36-2.67c-.21-.24-.22-.58-.04-.84l.02-.02c.18-.25.5-.35.78-.23l3.83 1.63c.53.23 1.13-.15 1.13-.73V5c0-1.66-1.34-3-3-3H4c-1.66 0-3 1.34-3 3v6.94c0 .58 1.54 1.2 1.13.73l1.63-3.83c.12-.28.44-.38.72-.26l.02.01c.28.12.38.44.26.72l-1.63 3.83c-.23.53.15 1.13.73 1.13h6.94c.58 0 1.2-1.54.73-1.13l-3.83-1.63c-.28-.12-.38-.44-.26-.72l.01-.02c.12-.28.44-.38.72-.26l3.83 1.63c.53.23 1.13-.15 1.13-.73V5c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v6.94c0 .58.42.73.73.73h6.94c.58 0 1.2.42.73.73l-1.63 3.83c-.12.28-.02.6.23.78l.02.02c.26.18.6.17.84-.04l2.67-2.36c.26-.23.65-.2.88.07l3.69 4.22c.23.26.2.65-.07.88l-2.36 2.67c-.21.24-.22.58-.04.84l.02.02c.18.25.5.35.78.23l3.83-1.63c.53-.23.15-1.13-.73-1.13z"/></svg>
+          TURKISH SPACE MISSIONS
+        </div>
+        <h2>Journey to the <span class="text-gradient-pink">Stars</span></h2>
+        <p>Explore Turkey's space adventure. From our first astronauts to future goals...</p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-line-gradient"></div>
+
+        <!-- Item 1: Alper -->
+        <div class="timeline-item">
+          <div class="timeline-icon-circle bg-gradient-pink">
+            <svg viewBox="0 0 24 24"><path d="M13.13 22.19l-1.63-3.83c-.12-.28-.02-.6.23-.78l.02-.02c.26-.18.6-.17.84.04l2.67 2.36c.26.23.65.2.88-.07l3.69-4.22c.23-.26.2-.65-.07-.88l-2.36-2.67c-.21-.24-.22-.58-.04-.84l.02-.02c.18-.25.5-.35.78-.23l3.83 1.63c.53.23 1.13-.15 1.13-.73V5c0-1.66-1.34-3-3-3H4c-1.66 0-3 1.34-3 3v6.94c0 .58 1.54 1.2 1.13.73l1.63-3.83c.12-.28.44-.38.72-.26l.02.01c.28.12.38.44.26.72l-1.63 3.83c-.23.53.15 1.13.73 1.13h6.94c.58 0 1.2-1.54.73-1.13l-3.83-1.63c-.28-.12-.38-.44-.26-.72l.01-.02c.12-.28.44-.38.72-.26l3.83 1.63c.53.23 1.13-.15 1.13-.73V5c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v6.94c0 .58.42.73.73.73h6.94c.58 0 1.2.42.73.73l-1.63 3.83c-.12.28-.02.6.23.78l.02.02c.26.18.6.17.84-.04l2.67-2.36c.26-.23.65-.2.88.07l3.69 4.22c.23.26.2.65-.07.88l-2.36 2.67c-.21.24-.22.58-.04.84l.02.02c.18.25.5.35.78.23l3.83-1.63c.53-.23.15-1.13-.73-1.13z"/></svg>
+          </div>
+          <div class="timeline-item-content timeline-card">
+            <span class="year">2024</span>
+            <h3>Alper Gezeravcı</h3>
+            <span class="role text-gradient-pink">Turkey's First Astronaut</span>
+            <p>Conducted 13 scientific experiments on the International Space Station.</p>
+          </div>
+        </div>
+
+        <!-- Item 2: Tuva -->
+        <div class="timeline-item">
+          <div class="timeline-icon-circle bg-gradient-blue">
+            <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.62L12 2 9.19 8.62 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          </div>
+          <div class="timeline-item-content timeline-card">
+            <span class="year">2024</span>
+            <h3>Tuva Cihangir Atasever</h3>
+            <span class="role text-gradient-blue">Turkey's Second Astronaut</span>
+            <p>Conducting scientific research and experiments in space.</p>
+          </div>
+        </div>
+
+        <!-- Item 3: Deneyler -->
+        <div class="timeline-item">
+          <div class="timeline-icon-circle bg-gradient-pink">
+             <svg viewBox="0 0 24 24"><path d="M10 2v2.26l-2 4.02V20c0 1.1.9 2 2 2h4c1.1 0 2-.9 2-2v-9.74l-2-4.02V2h2c.55 0 1-.45 1-1S16.55 0 16 0H8c-.55 0-1 .45-1 1s.45 1 1 1h2zm1 14.5c0 .28-.22.5-.5.5s-.5-.22-.5-.5.22-.5.5-.5.5.22.5.5zm-1.5-2c0-.28.22-.5.5-.5s.5.22.5.5-.22.5-.5.5-.5-.22-.5-.5zm2.5 0c0-.28.22-.5.5-.5s.5.22.5.5-.22.5-.5.5-.5-.22-.5-.5zm1.5-2c0-.28.22-.5.5-.5s.5.22.5.5-.22.5-.5.5-.5-.22-.5-.5z"/></svg>
+          </div>
+          <div class="timeline-item-content timeline-card">
+            <span class="year text-gradient-pink" style="color:inherit">ONGOING</span>
+            <h3>Space Experiments</h3>
+            <span class="role text-gradient-purple">Scientific Research</span>
+            <p>Experiments designed by Turkish scientists in microgravity environments.</p>
+          </div>
+        </div>
+
+        <!-- Item 4: Vizyon -->
+        <div class="timeline-item">
+          <div class="timeline-icon-circle bg-gradient-blue">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+          </div>
+          <div class="timeline-item-content timeline-card">
+            <span class="year text-gradient-blue" style="color:inherit">FUTURE</span>
+            <h3>Turkey's Space Vision</h3>
+            <span class="role text-gradient-blue">2030 Goals</span>
+            <p>National space program goals including Moon missions and deep space exploration.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= PLANET SECTION ========================= -->
+    <section class="planet-section container">
+      <div class="section-header-center">
+        <div class="tag-pill orange">
+           <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right:6px"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+           DISCOVERY ZONE
+        </div>
+        <h2>Choose a <span class="text-gradient-blue">Planet</span></h2>
+        <p>Discover the planets in our solar system and learn their stories.</p>
+      </div>
+
+      <div class="space-system-row">
+        <!-- Sun -->
+        <div class="celestial-body sun active" data-id="sun" style="--body-color: #ff4500; --glow-color: rgba(255, 69, 0, 0.6);" role="button">
+          <span class="label">Sun</span>
+        </div>
+        <!-- Planets -->
+        <div class="celestial-body planet" data-id="mercury" style="--body-size: 35px; --body-color: #97979f; --glow-color: rgba(151, 151, 159, 0.4);" role="button"><span class="label">Mercury</span></div>
+        <div class="celestial-body planet" data-id="venus" style="--body-size: 45px; --body-color: #e3bb76; --glow-color: rgba(227, 187, 118, 0.4);" role="button"><span class="label">Venus</span></div>
+        <div class="celestial-body planet" data-id="earth" style="--body-size: 48px; --body-color: #2271b3; --glow-color: rgba(34, 113, 179, 0.5);" role="button"><span class="label">Earth</span></div>
+        <div class="celestial-body planet" data-id="mars" style="--body-size: 40px; --body-color: #e27b58; --glow-color: rgba(226, 123, 88, 0.4);" role="button"><span class="label">Mars</span></div>
+        <div class="celestial-body planet" data-id="jupiter" style="--body-size: 75px; --body-color: #d39c7e; --glow-color: rgba(211, 156, 126, 0.3);" role="button"><span class="label">Jupiter</span></div>
+        <div class="celestial-body planet" data-id="saturn" style="--body-size: 65px; --body-color: #c5ab6e; --glow-color: rgba(197, 171, 110, 0.3);" role="button"><span class="label">Saturn</span></div>
+        <div class="celestial-body planet" data-id="uranus" style="--body-size: 55px; --body-color: #b5e3e3; --glow-color: rgba(181, 227, 227, 0.4);" role="button"><span class="label">Uranus</span></div>
+        <div class="celestial-body planet" data-id="neptune" style="--body-size: 53px; --body-color: #4b70dd; --glow-color: rgba(75, 112, 221, 0.4);" role="button"><span class="label">Neptune</span></div>
+      </div>
+
+      <div class="planet-content-wrapper" id="planetDetailBox">
+        <div class="glow-box glow-strong">
+          <h3 id="planetTitle">The Sun</h3>
+          <p id="planetDesc">The massive sphere of plasma at the center of the Solar System. It is the energy source for all life.</p>
+          <button class="btn audio-btn" id="playAudioBtn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px; vertical-align: middle;">
+              <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+            </svg>
+            Listen
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================= QUOTE & VALUES SECTION ========================= -->
+    <section class="quote-section container">
+      <div class="quote-icon">
+        <svg viewBox="0 0 24 24"><path d="M9 21c0 .55.45 1 1 1h4c.55 0 1-.45 1-1v-1H9v1zm3-19C8.14 2 5 5.14 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26c1.81-1.27 3-3.36 3-5.74 0-3.86-3.14-7-7-7zm2.85 11.1l-.85.6V16h-4v-2.3l-.85-.6C7.8 12.16 7 10.63 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 1.63-.8 3.16-2.15 4.1z"/></svg>
+      </div>
+      
+      <div style="max-width: 900px; margin: 0 auto 60px;">
+        <div class="quote-text">"The future is built by <span class="text-gradient-pink">curious children."</span></div>
+        <div class="quote-author">
+          <strong>— İdris Albayrak</strong>
+          Albamen AI Founder
+        </div>
+      </div>
+
+      <div class="values">
+        <!-- Value 1 -->
+        <div class="value-box">
+          <div class="value-icon-box bg-purple-soft">
+             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <h3>STEM-Focused</h3>
+          <p>Empowering young minds with science, technology, engineering and mathematics.</p>
+        </div>
+
+        <!-- Value 2 -->
+        <div class="value-box">
+           <div class="value-icon-box bg-blue-soft">
+             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3L1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg>
+           </div>
+           <h3>Self-taught</h3>
+           <p>Cultivating curious, independent learners who question and explore.</p>
+        </div>
+
+        <!-- Value 3 -->
+        <div class="value-box">
+           <div class="value-icon-box bg-pink-soft">
+             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.13 22.19l-1.63-3.83c-.12-.28-.02-.6.23-.78l.02-.02c.26-.18.6-.17.84.04l2.67 2.36c.26.23.65.2.88-.07l3.69-4.22c.23-.26.2-.65-.07-.88l-2.36-2.67c-.21-.24-.22-.58-.04-.84l.02-.02c.18-.25.5-.35.78-.23l3.83 1.63c.53.23 1.13-.15 1.13-.73V5c0-1.66-1.34-3-3-3H4c-1.66 0-3 1.34-3 3v6.94c0 .58 1.54 1.2 1.13.73l1.63-3.83c.12-.28.44-.38.72-.26l.02.01c.28.12.38.44.26.72l-1.63 3.83c-.23.53.15 1.13.73 1.13h6.94c.58 0 1.2-1.54.73-1.13l-3.83-1.63c-.28-.12-.38-.44-.26-.72l.01-.02c.12-.28.44-.38.72-.26l3.83 1.63c.53.23 1.13-.15 1.13-.73V5c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v6.94c0 .58.42.73.73.73h6.94c.58 0 1.2.42.73.73l-1.63 3.83c-.12.28-.02.6.23.78l.02.02c.26.18.6.17.84-.04l2.67-2.36c.26-.23.65-.2.88.07l3.69 4.22c.23.26.2.65-.07.88l-2.36 2.67c-.21.24-.22.58-.04.84l.02.02c.18.25.5.35.78.23l3.83-1.63c.53-.23.15-1.13-.73-1.13z"/></svg>
+           </div>
+           <h3>Imagination</h3>
+           <p>Combining science with creativity to inspire big dreams and breakthroughs.</p>
+        </div>
+      </div>
+    </section>
+
+
+
+    <div data-include-html="/footer-en.html"></div>
+
+    <script src="/assets/js/include.js"></script>
+
+    <script>
+      // Mini Chat Window Logic (English)
+      const aiChatMini = document.getElementById('aiChatMini');
+      const miniChatClose = document.getElementById('miniChatClose');
+      const aiVoiceBtn = document.getElementById('ai-voice-btn');
+      let miniChatOpen = false;
+
+      // Toggle mini chat on button click
+      if (aiVoiceBtn) {
+        aiVoiceBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          miniChatOpen = !miniChatOpen;
+          if (miniChatOpen) {
+            aiChatMini.classList.add('open');
+          } else {
+            aiChatMini.classList.remove('open');
+          }
+        });
+      }
+
+      // Close mini chat
+      if (miniChatClose) {
+        miniChatClose.addEventListener('click', () => {
+          miniChatOpen = false;
+          aiChatMini.classList.remove('open');
+        });
+      }
+
+      // Close mini chat when clicking outside
+      document.addEventListener('click', (e) => {
+        if (miniChatOpen && !aiChatMini.contains(e.target) && !aiVoiceBtn.contains(e.target)) {
+          miniChatOpen = false;
+          aiChatMini.classList.remove('open');
+        }
+      });
+    </script>
+
+    <script>
+      // ===========================
+      // 1. PLANET INTERACTION LOGIC
+      // ===========================
+      const planetData = {
+        sun: {
+          title: "The Sun",
+          desc: "The massive sphere of plasma at the center of the Solar System. It is the energy source for all life. Without the Sun, life on Earth would not exist."
+        },
+        mercury: {
+          title: "Mercury",
+          desc: "The closest planet to the Sun. Its surface is covered with craters, and it has a very thin atmosphere. It is extremely hot during the day and freezing at night."
+        },
+        venus: {
+          title: "Venus",
+          desc: "The brightest planet in the sky. Its thick atmosphere traps heat, making it the hottest planet in the Solar System. Unlike others, it rotates in the opposite direction."
+        },
+        earth: {
+          title: "Earth",
+          desc: "Our home! The only planet known to support life. Most of its surface is covered with water, and it has a protective atmosphere."
+        },
+        mars: {
+          title: "Mars",
+          desc: "Known as the Red Planet. Its color comes from iron oxide in the soil. Olympus Mons, the largest volcano in the Solar System, is located here."
+        },
+        jupiter: {
+          title: "Jupiter",
+          desc: "The largest planet in the Solar System. It is a gas giant with no solid surface. The 'Great Red Spot' on it is actually a massive storm."
+        },
+        saturn: {
+          title: "Saturn",
+          desc: "Famous for its magnificent rings made of ice and rock particles. It is the second-largest planet after Jupiter."
+        },
+        uranus: {
+          title: "Uranus",
+          desc: "Classified as an ice giant. Methane gas in its atmosphere gives it a blue-green color. It rotates on its side like a rolling barrel."
+        },
+        neptune: {
+          title: "Neptune",
+          desc: "The farthest planet from the Sun. It is very cold and has extremely strong winds. Its deep blue color resembles deep oceans."
+        }
+      };
+
+      const planets = document.querySelectorAll('.celestial-body');
+      const titleEl = document.getElementById('planetTitle');
+      const descEl = document.getElementById('planetDesc');
+      const detailBox = document.getElementById('planetDetailBox');
+      const playBtn = document.getElementById('playAudioBtn');
+
+      planets.forEach(planet => {
+        planet.addEventListener('click', function() {
+          // 1. Remove active class from all
+          planets.forEach(p => p.classList.remove('active'));
+
+          // 2. Add active class to clicked
+          this.classList.add('active');
+
+          // 3. Update Text
+          const id = this.getAttribute('data-id');
+          const data = planetData[id];
+
+          if (data) {
+            // Simple fade effect
+            detailBox.classList.remove('animating');
+            void detailBox.offsetWidth; // trigger reflow
+            detailBox.classList.add('animating');
+
+            titleEl.textContent = data.title;
+            descEl.textContent = data.desc;
+          }
+        });
+      });
+
+      // Optional: Button click handler
+      if(playBtn) {
+        playBtn.addEventListener('click', () => {
+          alert('Playing audio... (Demo)');
+        });
+      }
+
+
+      // ===========================
+      // 2. BOOK GALLERY LOGIC (Simple)
+      // ===========================
+      const thumbs = document.querySelectorAll('.thumb');
+      const mainImg = document.getElementById('albamenMainImg');
+
+      thumbs.forEach(thumb => {
+        thumb.addEventListener('click', function() {
+          // Update active state
+          thumbs.forEach(t => t.classList.remove('is-active'));
+          this.classList.add('is-active');
+
+          // Update main image
+          const newSrc = this.getAttribute('data-src');
+          if(mainImg && newSrc) {
+             mainImg.src = newSrc;
+          }
+        });
+      });
+    </script>
+
+  <script>
+    const revealItems = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.18,
+      rootMargin: '0px 0px -8% 0px'
+    });
+
+    revealItems.forEach((item, index) => {
+      const delay = item.dataset.direction === 'left' ? index * 0.025 : index * 0.03;
+      item.style.setProperty('--reveal-delay', `${delay}s`);
+      observer.observe(item);
+    });
+  </script>
+
+  <script>
+      // Cookie Popup Control
+      document.addEventListener("DOMContentLoaded", function() {
+          if (!localStorage.getItem("albaCookieSeen")) {
+              document.getElementById("cookie-overlay").style.display = "flex";
+          }
+      });
+
+      const acceptBtn = document.getElementById("btnAccept");
+      const settingsBtn = document.getElementById("btnSettings");
+
+      if(acceptBtn) {
+          acceptBtn.addEventListener("click", function() {
+              setTimeout(() => {
+                  document.getElementById("cookie-overlay").style.display = "none";
+                  localStorage.setItem("albaCookieSeen", "true");
+              }, 200);
+          });
+      }
+
+      if(settingsBtn) {
+          settingsBtn.addEventListener("click", function() {
+               window.location.href = "cerez-politikasi.html";
+          });
+      }
+  </script>
+  <script>
+    // Find text nodes containing "Gazegeni" (case-insensitive) and wrap matches with <span class="gazegeni">...
+    document.addEventListener('DOMContentLoaded', function () {
+      try {
+        var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+          acceptNode: function(node) {
+            return /Gazegeni/i.test(node.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+          }
+        });
+        var nodes = [];
+        while (walker.nextNode()) nodes.push(walker.currentNode);
+        nodes.forEach(function(textNode){
+          var html = textNode.nodeValue.replace(/(Gazegeni)/gi, '<span class="gazegeni">$1</span>');
+          if (html.indexOf('<span') !== -1) {
+            var frag = document.createRange().createContextualFragment(html);
+            textNode.parentNode.replaceChild(frag, textNode);
+          }
+        });
+      } catch (e) {
+        console.error('Gazegeni replace error', e);
+      }
+    });
+  </script>
+</body>
+</html>
