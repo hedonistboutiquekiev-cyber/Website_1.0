@@ -196,7 +196,8 @@
     .book-actions-row { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
     .btn-incele { background: #6366f1; color: white !important; border-radius: 12px; padding: 14px 24px; font-weight: 600; display: flex; align-items: center; gap: 8px; text-decoration: none; }
     .btn-satin-al { background: #0ea5e9; color: white !important; border-radius: 12px; padding: 14px 24px; font-weight: 600; display: flex; align-items: center; gap: 8px; text-decoration: none; }
-    .ar-link { color: #cbd5e1; text-decoration: none; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; margin-left: 10px; }
+    .ar-link { background: rgba(168, 85, 247, 0.15); color: #a855f7 !important; border: 1px solid rgba(168, 85, 247, 0.4); border-radius: 12px; padding: 14px 24px; font-weight: 600; display: flex; align-items: center; gap: 8px; text-decoration: none; transition: all 0.2s ease; }
+    .ar-link:hover { background: rgba(168, 85, 247, 0.25); border-color: rgba(168, 85, 247, 0.6); }
 
     @media (max-width: 768px) {
       .hero { padding: 100px 0 40px; min-height: auto; }
@@ -211,11 +212,11 @@
       .book-desc-main { font-size: 0.95rem; margin-bottom: 20px; }
       .book-specs-grid { grid-template-columns: 1fr; gap: 10px; margin-bottom: 20px; }
       .book-actions-row { flex-direction: column; align-items: stretch; gap: 12px; }
-      .ar-link { margin-left: 0; justify-content: center; padding: 10px; }
+      .ar-link { margin-left: 0; justify-content: center; padding: 14px 24px; width: 100%; }
       .btn-incele, .btn-satin-al { justify-content: center; width: 100%; }
       
       .space-system-row { gap: 8px; padding: 20px 0; justify-content: center; flex-wrap: wrap; }
-      .space-system-row .celestial-body:first-child { flex-basis: 100%; }
+      .space-system-row .celestial-body:first-child { flex-basis: 100%; display: flex; align-items: center; justify-content: center; }
       .sun { width: 60px; height: 60px; }
       .planet { width: calc(var(--body-size) * 0.7); height: calc(var(--body-size) * 0.7); }
       .celestial-body .label { font-size: 11px; bottom: -24px; }
@@ -285,7 +286,7 @@
         <div class="book-visual">
           <div class="tag-pill outline badge-top">TÜRKİYE'NİN İLKİ</div>
           <div class="glow-box book-glow">
-            <img src="/assets/images/anasayfa-hero.jpg" alt="Albamen Uzay Ansiklopedisi" class="book-img-main">
+            <img src="/assets/images/albamenvelara.jpg" alt="Albamen Uzay Ansiklopedisi" class="book-img-main">
           </div>
         </div>
 
