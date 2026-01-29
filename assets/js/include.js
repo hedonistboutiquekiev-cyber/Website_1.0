@@ -1098,8 +1098,8 @@ function injectUnifiedAiWidget() {
         position: fixed;
         bottom: 20px;
         right: 20px;
-        width: 64px;
-        height: 64px;
+        width: 128px;
+        height: 128px;
         border-radius: 50%;
         background: #020617;
         border: 2px solid rgba(56, 189, 248, 0.5);
@@ -1112,7 +1112,7 @@ function injectUnifiedAiWidget() {
         transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         z-index: 1200;
         overflow: hidden;
-        padding: 4px;
+        padding: 8px;
       }
 
       .ai-widget-button:hover {
@@ -1128,7 +1128,7 @@ function injectUnifiedAiWidget() {
       /* Main chat window */
       .ai-unified-widget {
         position: fixed;
-        bottom: 90px;
+        bottom: 150px;
         right: 20px;
         width: 420px;
         max-width: 90vw;

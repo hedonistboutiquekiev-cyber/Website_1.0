@@ -2517,11 +2517,11 @@ footer.footer{
 
     display: none;
 
-    background: transparent;
+    background: rgba(88, 28, 135, 0.7);
 
-    border: none;
+    border: 1px solid rgba(147, 51, 234, 0.5);
 
-    box-shadow: none;
+    box-shadow: 0 0 20px rgba(147, 51, 234, 0.3), inset 0 0 12px rgba(147, 51, 234, 0.1);
 
     opacity: 1;
 
@@ -2530,6 +2530,8 @@ footer.footer{
     transition: none;
 
     padding-left: 20px;
+
+    border-radius: 8px;
 
   }
 
