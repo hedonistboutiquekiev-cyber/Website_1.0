@@ -240,6 +240,12 @@ runAfterDomReady(() => {
             if (p) p.classList.remove('ai-open');
             return;
           }
+          const fullscreen = ev.target.closest && ev.target.closest('.ai-fullscreen-btn');
+          if (fullscreen) {
+            const p = fullscreen.closest('.ai-panel-global');
+            if (p) p.classList.toggle('ai-fullscreen');
+            return;
+          }
           const openChat = ev.target.closest && ev.target.closest('#ai-avatar-trigger, #ai-call-trigger, .ai-call-btn, .ai-hero-avatar');
           if (openChat) {
             const p = document.querySelector('.ai-panel-global');

@@ -851,13 +851,13 @@ body{
 
   bottom: 20px;
 
-  right: 20px;
+  right: 100px;
 
-  width: 380px;
+  width: 190px;
 
   max-width: 90vw;
 
-  height: 500px;
+  height: 250px;
 
   max-height: 80vh;
 
@@ -913,6 +913,30 @@ body{
 
 }
 
+.ai-panel-global.ai-fullscreen {
+
+  width: 100vw !important;
+
+  height: 100vh !important;
+
+  top: 0 !important;
+
+  left: 0 !important;
+
+  right: auto !important;
+
+  bottom: auto !important;
+
+  border-radius: 0 !important;
+
+  max-width: none !important;
+
+  max-height: none !important;
+
+  transform: none !important;
+
+}
+
 /* Header панели */
 
 .ai-panel-header {
@@ -926,6 +950,62 @@ body{
   padding: 16px;
 
   background: transparent;
+
+}
+
+.ai-header-actions {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+}
+
+.ai-fullscreen-btn {
+
+  width: 40px;
+
+  height: 40px;
+
+  border-radius: 50%;
+
+  background: #0b1628;
+
+  color: #e5e7eb;
+
+  border: 2px solid rgba(17, 24, 39, 0.65);
+
+  display: grid;
+
+  place-items: center;
+
+  cursor: pointer;
+
+  transition: background 0.2s ease;
+
+}
+
+.ai-fullscreen-btn:hover {
+
+  background: #1f2937;
+
+}
+
+.ai-fullscreen-btn svg {
+
+  width: 20px;
+
+  height: 20px;
+
+  transition: transform 0.3s ease;
+
+}
+
+.ai-panel-global.ai-fullscreen .ai-fullscreen-btn svg {
+
+  transform: rotate(180deg);
 
 }
 

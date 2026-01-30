@@ -175,6 +175,26 @@
 .celestial-body[data-id="uranus"] { background: radial-gradient(circle at 40% 40%, #e0f7f9 0%, #b5e3e3 40%, #7dd3d3 70%, #4a9fa8 100%) !important; }
 .celestial-body[data-id="neptune"] { background: radial-gradient(circle at 35% 35%, #5a9fdb 0%, #4b70dd 40%, #3b4fc4 70%, #1f2a6b 100%) !important; }
 
+/* Override: prevent sun/planet stretching on small screens and ensure circular bodies */
+.celestial-body { -webkit-backface-visibility: hidden; backface-visibility: hidden; }
+.celestial-body, .celestial-body.sun, .celestial-body.planet {
+  flex: 0 0 auto;
+  aspect-ratio: 1 / 1;
+  width: var(--body-size, 48px) !important;
+  height: var(--body-size, 48px) !important;
+  min-width: 28px;
+  min-height: 28px;
+  max-width: 120px;
+  max-height: 120px;
+}
+.sun { --body-size: 48px !important; }
+.celestial-body img, .celestial-body svg { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+@media (max-width: 480px) {
+  .celestial-body { --body-size: 40px !important; }
+  .sun { --body-size: 44px !important; }
+}
+
 	/* Specific class for the word Gazegeni */
 	.gazegeni { color: #0ea5e9 !important; -webkit-text-fill-color: #0ea5e9 !important; background: none !important; text-shadow: 0 0 10px rgba(14,165,233,0.18); }
 
