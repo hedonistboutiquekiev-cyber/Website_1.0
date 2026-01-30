@@ -195,6 +195,21 @@
   .sun { --body-size: 44px !important; }
 }
 
+/* Mobile-specific override: prevent the first celestial body (sun) from becoming full-width */
+@media (max-width: 768px) {
+  .space-system-row .celestial-body:first-child {
+    flex-basis: auto !important;
+    display: inline-flex !important;
+    width: var(--body-size, 48px) !important;
+    height: var(--body-size, 48px) !important;
+    min-width: 28px !important;
+    min-height: 28px !important;
+    aspect-ratio: 1 / 1 !important;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
 	/* Specific class for the word Gazegeni */
 	.gazegeni { color: #0ea5e9 !important; -webkit-text-fill-color: #0ea5e9 !important; background: none !important; text-shadow: 0 0 10px rgba(14,165,233,0.18); }
 
