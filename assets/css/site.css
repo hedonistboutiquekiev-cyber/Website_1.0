@@ -607,9 +607,9 @@ body{
 
   bottom: 20px;
 
-  width: 60px;
+  width: 30px;
 
-  height: 60px;
+  height: 30px;
 
   border-radius: 50%;
 
@@ -705,7 +705,7 @@ body{
 
   position: fixed;
 
-  right: 20px;
+  left: 20px;
 
   bottom: 20px;
 
@@ -735,9 +735,9 @@ body{
 
 .ai-hero-avatar {
 
-  width: 194px;
+  width: 97px;
 
-  height: 194px;
+  height: 97px;
 
   aspect-ratio: 1 / 1;
 
@@ -851,13 +851,13 @@ body{
 
   bottom: 20px;
 
-  right: 290px;
+  right: 90px;
 
-  width: 190px;
+  width: 95px;
 
   max-width: 90vw;
 
-  height: 250px;
+  height: 125px;
 
   max-height: 80vh;
 
@@ -1347,9 +1347,9 @@ body{
 
   .ai-widget-toggle-btn {
 
-    width: 56px;
+    width: 28px;
 
-    height: 56px;
+    height: 28px;
 
     right: 16px;
 
@@ -4205,7 +4205,7 @@ model-viewer{
 
     display: none !important; /* Скрываем по умолчанию */
 
-    right: 10px;
+    left: 10px;
 
     bottom: 10px;
 
@@ -4223,9 +4223,9 @@ model-viewer{
 
   .ai-hero-avatar {
 
-    width: 80px;
+    width: 48px;
 
-    height: 80px;
+    height: 48px;
 
     border-width: 2px;
 
