@@ -315,7 +315,7 @@ Yazar: İdris Albayrak
     let reply = "Hata oluştu 🚀"; // Дефолтный ответ
     
     try {
-      const apiKey = env.GROQ_API_KEY || "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";
+      const apiKey = env.GROQ_API_KEY || "apikey";
       const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
         method: "POST",
         headers: { "Content-Type": "application/json", "Authorization": `Bearer ${apiKey}` },
