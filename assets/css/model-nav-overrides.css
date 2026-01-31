@@ -207,7 +207,7 @@
 /* Increase cart icon by 20% relative to previous scale */
 .top-lang-switch .header-cart-icon img {
   display: inline-block;
-  transform: scale(2.4); /* 2 * 1.2 = 2.4 */
+  transform: scale(3); /* 2 * 1.2 = 2.4 */
   transform-origin: center center;
   transition: transform 150ms ease;
 }
