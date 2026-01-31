@@ -60,7 +60,7 @@
 
       <button class="btn-primary checkout-btn" type="button">CHECKOUT</button>
       
-      <a class="whatsapp-btn" href="https://wa.me/905387781018" target="_blank" rel="noopener">PAY VIA WHATSAPP</a>
+      <a id="whatsappBtn" class="whatsapp-btn" href="#" rel="noopener">PAY VIA WHATSAPP</a>
 
       <div class="chart-payment-bar">
         <div class="payment-icons" aria-hidden="true">
@@ -163,6 +163,45 @@
     }
 
     document.addEventListener('DOMContentLoaded', renderCartEN);
+  </script>
+
+  <script>
+    // Build WhatsApp message from cart and open chat (English)
+    (function() {
+      const phone = '905387781018';
+      const EXCHANGE_RATE = 43; // same rate used by renderCartEN
+
+      function buildMessageEN(cart) {
+        const lines = ['Hello, my order:'];
+        let total = 0;
+        cart.forEach(item => {
+          const priceUSD = (Number(item.price) || 0) / EXCHANGE_RATE;
+          const itemTotalUSD = priceUSD * (Number(item.qty) || 0);
+          total += itemTotalUSD;
+          const attrs = [(item.color || ''), (item.size || '')].filter(Boolean).join(' / ');
+          lines.push(`- ${item.name}${attrs ? ' (' + attrs + ')' : ''} x${item.qty}: $${itemTotalUSD.toFixed(2)}`);
+        });
+        lines.push(`Total: $${total.toFixed(2)}`);
+        return lines.join('\n');
+      }
+
+      function openWhatsAppEN(e) {
+        e && e.preventDefault();
+        const cart = window.cartManager ? window.cartManager.load() : [];
+        if (!cart || !cart.length) {
+          alert('Your cart is empty.');
+          return;
+        }
+        const text = encodeURIComponent(buildMessageEN(cart));
+        const url = `https://wa.me/${phone}?text=${text}`;
+        window.open(url, '_blank');
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+        const btn = document.getElementById('whatsappBtn');
+        if (btn) btn.addEventListener('click', openWhatsAppEN);
+      });
+    })();
   </script>
 
   <script>

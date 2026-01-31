@@ -1114,7 +1114,8 @@ function injectUnifiedAiWidget() {
       /* Small floating button */
       .ai-widget-button {
         position: fixed;
-        bottom: 20px;
+        /* place button above the half-height panel so it's accessible */
+        bottom: calc(50vh + 20px);
         right: 20px;
         width: 128px;
         height: 128px;
@@ -1146,12 +1147,13 @@ function injectUnifiedAiWidget() {
       /* Main chat window */
       .ai-unified-widget {
         position: fixed;
-        bottom: 150px;
+        /* anchor the panel to the bottom and make it half the viewport height */
+        bottom: 20px;
         right: 20px;
         width: 420px;
         max-width: 90vw;
-        height: 600px;
-        max-height: 85vh;
+        height: 50vh;
+        max-height: 50vh;
         background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
         border: 1px solid rgba(56, 189, 248, 0.2);
         border-radius: 24px;
@@ -1482,19 +1484,21 @@ function injectUnifiedAiWidget() {
 
       /* Mobile responsive */
       @media (max-width: 480px) {
+        /* On small screens, show widget as a half-height panel (50% viewport height)
+           so it doesn't cover the whole page. Button is positioned slightly above it. */
         .ai-unified-widget {
           width: 100%;
-          height: 100%;
-          max-height: 100vh;
+          height: 50vh;
+          max-height: 50vh;
           bottom: 0;
           right: 0;
-          border-radius: 0;
+          border-radius: 12px 12px 0 0;
         }
 
         .ai-widget-button {
           width: 48px;
           height: 48px;
-          bottom: 16px;
+          bottom: calc(50vh + 16px);
           right: 16px;
         }
 
