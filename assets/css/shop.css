@@ -279,8 +279,10 @@
 
 .product-page {
   max-width: 1000px;
-  margin: 40px auto 80px;
-  padding: 0 20px;
+  /* Pull the product area higher so the right-side detail block
+     appears at the very top of the page content (just under header). */
+  margin: 0 auto 80px;
+  padding: 4px 20px 0 20px;
 }
 
 .product-detail {
@@ -291,6 +293,11 @@
   grid-template-columns: minmax(280px, 1fr) 360px;
   gap: 28px;
   align-items: start;
+  position: relative;
+  /* Nudge the whole product block slightly upwards so the detail
+     panel sits at the top edge next to the image. Small negative
+     offset gives a tighter appearance under sticky header. */
+  margin-top: -18px;
 }
 
 .product-detail > img {
@@ -312,6 +319,9 @@
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+  /* ensure the detail panel is aligned to the top of the image column */
+  align-self: start;
+  margin-top: 0;
 }
 
 /* Product thumbnails gallery (small) displayed under the main image */
@@ -343,6 +353,13 @@
   }
   .detail-info { grid-column: 1; }
   .product-gallery { grid-column: 1; }
+}
+
+@media (max-width: 700px) {
+  /* On small screens remove the negative offset to avoid overlap
+     with the header and to keep a comfortable spacing. */
+  .product-detail { margin-top: 0; }
+  .product-page { padding-top: 8px; }
 }
 
 .detail-info h1 {

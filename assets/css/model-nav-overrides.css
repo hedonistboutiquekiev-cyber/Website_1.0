@@ -204,11 +204,17 @@
   }
 }
 
-/* Increase chart (cart) icon and language flag buttons by 2x in header */
-.top-lang-switch .lang-flag img,
+/* Increase cart icon by 2x and make language flag buttons 25% smaller than previous doubling */
 .top-lang-switch .header-cart-icon img {
   display: inline-block;
   transform: scale(2);
+  transform-origin: center center;
+  transition: transform 150ms ease;
+}
+
+.top-lang-switch .lang-flag img {
+  display: inline-block;
+  transform: scale(1.5); /* was 2.0, now 25% smaller */
   transform-origin: center center;
   transition: transform 150ms ease;
 }
@@ -223,9 +229,11 @@
 
 /* Slightly reduce on small screens so layout stays usable */
 @media (max-width: 480px) {
-  .top-lang-switch .lang-flag img,
   .top-lang-switch .header-cart-icon img {
     transform: scale(1.5);
+  }
+  .top-lang-switch .lang-flag img {
+    transform: scale(1.125); /* 25% smaller than 1.5 */
   }
 }
 
