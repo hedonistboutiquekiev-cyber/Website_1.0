@@ -4325,6 +4325,13 @@ model-viewer{
   font-weight:700;
 }
 
+.ai-widget-toggle img {
+  width: 18px;
+  height: 18px;
+  display: block;
+  object-fit: contain;
+}
+
 /* Panel */
 .ai-widget-panel {
   position: fixed;

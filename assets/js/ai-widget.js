@@ -39,8 +39,27 @@
   }
 
   function togglePanel(){
+    // Prefer existing unified widget if available
+    if (openUnifiedWidget()) return;
+
     const panel = createPanel();
     panel.classList.toggle('open');
+  }
+
+  // Try to open the site's unified AI widget created by include.js
+  function openUnifiedWidget(){
+    try{
+      const btn = document.getElementById('ai-widget-button');
+      if (btn) { btn.click(); return true; }
+      const unified = document.getElementById('ai-unified-widget');
+      if (unified){
+        unified.classList.toggle('open');
+        return true;
+      }
+    }catch(e){
+      console.warn('openUnifiedWidget failed', e);
+    }
+    return false;
   }
 
   function init(){
