@@ -18,6 +18,11 @@
   <main class="product-page">
     <div class="product-detail">
       <img src="/assets/images/stanley.png" alt="Stanley Termos">
+      <div class="product-gallery" aria-hidden="true">
+        <img class="product-alt" src="/assets/images/placeholder.png" alt="Additional image 1">
+        <img class="product-alt" src="/assets/images/placeholder.png" alt="Additional image 2">
+        <img class="product-alt" src="/assets/images/placeholder.png" alt="Additional image 3">
+      </div>
       <div class="detail-info">
         <h1>Stanley Termos</h1>
         <div class="product-price">2400.00 TL</div>
@@ -27,18 +32,12 @@
           <li>Dayanıklı ve pratik</li>
           <li>AlbaSpace tasarımı</li>
         </ul>
-        <div class="product-gallery" aria-hidden="true">
-          <img class="product-alt" src="/assets/images/placeholder.png" alt="Additional image 1">
-            <a class="product-card" href="/product-hoodie.html">
-          <img class="product-alt" src="/assets/images/placeholder.png" alt="Additional image 3">
-        </div>
         <!-- Quantity selector -->
         <div class="qty-control" style="margin:16px 0;" data-qty>
           <button type="button" class="qty-btn" data-qty-minus>&minus;</button>
           <input type="number" value="1" min="1" class="qty-input" data-qty-input>
           <button type="button" class="qty-btn" data-qty-plus>&plus;</button>
         </div>
-            <a class="product-card" href="/product-hat.html">
         <button class="btn-primary" id="addToCartBtn"
           data-product-id="stanley"
           data-product-name="Stanley Termos"
@@ -47,7 +46,7 @@
           data-add-label="SEPETE EKLE"
           data-added-label="EKLENDİ!">
           SEPETE EKLE
-            <a class="product-card" href="/product-shirt.html">
+        </button>
         <div class="payment-icons" aria-hidden="true">
           <span class="payment-icons-link" role="link" tabindex="0" onclick="location.href='/chart.html';" onkeydown="if(event.key==='Enter'){location.href='/chart.html';}"></span>
           <img src="/assets/icons/iyzico_tr.png" alt="iyzico">
