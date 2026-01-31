@@ -300,7 +300,13 @@
   margin-top: -18px;
 }
 
-.product-detail > img {
+.product-detail > img,
+.product-detail img:first-of-type,
+.product-detail .product-media {
+  /* Ensure the main product media occupies the left column
+     even when it is wrapped inside a container or not a direct
+     child element. This makes the right-side `detail-info`
+     consistently appear top-right next to the photo. */
   grid-column: 1;
   width: 100%;
   max-width: 100%;
