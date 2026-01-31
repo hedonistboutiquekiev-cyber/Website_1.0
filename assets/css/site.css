@@ -4332,6 +4332,29 @@ model-viewer{
   object-fit: contain;
 }
 
+/* Alien placeholder button (neon head) */
+.alien-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  margin: 0 8px;
+  border-radius: 50%;
+  background: rgba(2,6,23,0.45);
+  box-shadow: 0 0 10px rgba(0,200,255,0.12), inset 0 0 6px rgba(0,200,255,0.03);
+  border: 1px solid rgba(0,200,255,0.12);
+}
+
+.alien-ghost svg { width:18px; height:18px; display:block; }
+.alien-ghost svg path { filter: drop-shadow(0 0 6px rgba(0,200,255,0.6)); }
+.alien-ghost:hover { box-shadow: 0 0 18px rgba(0,200,255,0.35), inset 0 0 10px rgba(0,200,255,0.08); transform: translateY(-2px); }
+
+@media (max-width:700px) {
+  .alien-ghost { width:30px; height:30px; margin-right:6px; }
+  .alien-ghost svg { width:14px; height:14px; }
+}
+
 /* Panel */
 .ai-widget-panel {
   position: fixed;

@@ -60,9 +60,26 @@
 
       <!-- Language switch -->
       <div class="top-lang-switch">
-        <!-- AI widget toggle: small button, left of Turkish flag -->
+        <!-- AI widget toggle: placed to the left of cart -->
         <a href="#" class="ai-widget-toggle" aria-label="AI widget" title="AI">
           <img src="/assets/images/albamenai.png" alt="AI" />
+        </a>
+
+        <a href="/cart.html" class="lang-flag header-cart-link" aria-label="Sepet">
+          <span class="header-cart-icon">
+            <img src="/assets/icons/chart.png" alt="Sepet">
+            <span class="header-cart-count" data-cart-count>0</span>
+          </span>
+        </a>
+
+        <!-- Alien placeholder button (glowing neon) to the right of cart -->
+        <a href="#" class="alien-ghost" aria-label="Alien" title="Alien">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M12 2C9 2 4 5 4 9c0 4 4 9 8 11 4-2 8-7 8-11 0-4-5-7-8-7z" fill="#0ff" opacity="0.12"/>
+            <ellipse cx="9" cy="10" rx="1.5" ry="2.5" fill="#001" />
+            <ellipse cx="15" cy="10" rx="1.5" ry="2.5" fill="#001" />
+            <path d="M6 9c0 2 3 6 6 8 3-2 6-6 6-8" stroke="#0ff" stroke-width="0.6" fill="none" opacity="0.9" />
+          </svg>
         </a>
 
         <a href="/index.html" data-lang="tr" class="lang-flag" aria-label="Turkish">
