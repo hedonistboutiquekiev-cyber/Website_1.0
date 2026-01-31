@@ -1521,9 +1521,17 @@ function injectUnifiedAiWidget() {
     const widget = document.getElementById('ai-unified-widget');
     if (widget) {
       widget.classList.toggle('open');
+      try {
+        // hide floating button automatically when widget closed by itself
+        button.style.display = widget.classList.contains('open') ? '' : 'none';
+      } catch (e) {}
     }
   });
   document.body.appendChild(button);
+  // Hide floating button by default; will be revealed when header toggle is used
+  try {
+    button.style.display = 'none';
+  } catch (e) { /* ignore */ }
 
   // ===== CREATE MAIN WIDGET =====
   const widget = document.createElement('div');
@@ -1600,6 +1608,11 @@ function injectUnifiedAiWidget() {
   // ===== CLOSE BUTTON =====
   document.getElementById('ai-widget-close').addEventListener('click', () => {
     widget.classList.remove('open');
+    // hide floating button when widget closed
+    try {
+      const fb = document.getElementById('ai-widget-button');
+      if (fb) fb.style.display = 'none';
+    } catch (e) { /* noop */ }
   });
 
   // ===== TEXT CHAT LOGIC =====

@@ -50,10 +50,20 @@
   function openUnifiedWidget(){
     try{
       const btn = document.getElementById('ai-widget-button');
-      if (btn) { btn.click(); return true; }
       const unified = document.getElementById('ai-unified-widget');
+      if (btn) {
+        // reveal floating button when header toggle used
+        try { btn.style.display = ''; } catch (e) {}
+        btn.click();
+        return true;
+      }
       if (unified){
+        // toggle unified widget; if there's a floating button, show it when opened
         unified.classList.toggle('open');
+        try {
+          const fb = document.getElementById('ai-widget-button');
+          if (fb) fb.style.display = unified.classList.contains('open') ? '' : 'none';
+        } catch (e) {}
         return true;
       }
     }catch(e){

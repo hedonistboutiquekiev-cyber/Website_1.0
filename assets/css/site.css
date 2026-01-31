@@ -4355,6 +4355,51 @@ model-viewer{
   .alien-ghost svg { width:14px; height:14px; }
 }
 
+/* Pulse neon circle around AI toggle */
+.ai-widget-toggle {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  overflow: visible;
+}
+
+.ai-widget-toggle::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(0,200,255,0.12), rgba(0,200,255,0.04) 40%, transparent 60%);
+  box-shadow: 0 0 10px rgba(0,200,255,0.18), 0 0 30px rgba(0,200,255,0.06) inset;
+  z-index: -1;
+  animation: aiPulse 2s infinite ease-in-out;
+  pointer-events: none;
+}
+
+@keyframes aiPulse {
+  0% { transform: translate(-50%, -50%) scale(0.95); opacity: 0.7; }
+  50% { transform: translate(-50%, -50%) scale(1.12); opacity: 1; }
+  100% { transform: translate(-50%, -50%) scale(0.95); opacity: 0.7; }
+}
+
+.ai-widget-toggle img { width: 18px; height: 18px; display: block; }
+
+/* Alien image styling */
+.alien-ghost img { width: 18px; height: 18px; display: block; object-fit: contain; filter: drop-shadow(0 0 8px rgba(0,200,255,0.6)); }
+
+@media (max-width:700px) {
+  .ai-widget-toggle::before { width: 46px; height: 46px; }
+  .ai-widget-toggle { width: 30px; height: 30px; }
+  .ai-widget-toggle img { width: 14px; height: 14px; }
+}
+
 /* Panel */
 .ai-widget-panel {
   position: fixed;
