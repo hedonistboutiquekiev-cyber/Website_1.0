@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -24,7 +24,7 @@
       --header-bg: #020617;
       --accent: #00c2ff;
       --accent-hover: #0099cc;
-      --page-bg: #030712;
+      --page-bg: #020617;
       --text-main: #f3f4f6;
     }
 
@@ -114,8 +114,7 @@
       height: 24px;
       width: auto;
       object-fit: contain;
-      filter: brightness(0) invert(1);
-      opacity: 0.7;
+      opacity: 1;
       transition: opacity 0.3s ease;
     }
     
@@ -162,7 +161,7 @@
   <!-- Ваш оригинальный хедер -->
   <div data-include="/header-en.html"></div>
 
-  <div class="space-bg"></div>
+  
 
   <main class="max-w-7xl mx-auto px-4 py-8 md:py-16">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start product-grid">
@@ -210,7 +209,13 @@
           </ul>
         </div>
 
-        <div class="flex flex-col sm:flex-row gap-4 mb-8">
+        
+        <!-- Payment Icons -->
+        <div class="flex flex-wrap items-center gap-6 payment-icons mb-6">
+          <img src="/assets/icons/iyzico_tr.png" alt="iyzico">
+          <img src="/assets/icons/mastercard.png" alt="mastercard">
+          <img src="/assets/icons/visa.png" alt="visa">
+        </div><div class="flex flex-col sm:flex-row gap-4 mb-8">
           <!-- Выбор количества -->
           <div class="flex items-center bg-gray-900 border border-gray-800 rounded-2xl p-1 h-14" data-qty>
             <button class="w-12 h-full flex items-center justify-center text-xl hover:text-white transition" onclick="updateQty(-1)">&minus;</button>
@@ -232,11 +237,6 @@
         </div>
 
         <!-- Иконки оплаты -->
-        <div class="pt-6 border-t border-gray-800 flex flex-wrap items-center gap-6 payment-icons">
-          <img src="/assets/icons/iyzico_tr.png" alt="iyzico">
-          <img src="/assets/icons/mastercard.png" alt="mastercard">
-          <img src="/assets/icons/visa.png" alt="visa">
-        </div>
       </div>
     </div>
 
