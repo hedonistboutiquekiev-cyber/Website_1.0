@@ -122,6 +122,40 @@
     .payment-icons img:hover {
       opacity: 1;
     }
+        /* ===== Local overrides to beat global site.css ===== */
+    /* Ensure main product image is reduced to 70% and not limited by global rules */
+    #mainImage,
+    .main-image-container img {
+      width: 70% !important;
+      max-width: 720px !important;
+      display: block !important;
+      margin: 0 auto !important;
+      height: auto !important;
+      object-fit: cover !important;
+      border-radius: 24px !important;
+    }
+
+    /* Thumbnails: force square shape with rounded corners */
+    .thumb-btn {
+      width: 80px !important;
+      height: 80px !important;
+      min-width: 80px !important;
+      min-height: 80px !important;
+      border-radius: 12px !important;
+      overflow: hidden !important;
+      padding: 0 !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
+    .thumb-btn img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      display: block !important;
+      border-radius: inherit !important;
+    }
   </style>
 </head>
 <body>
