@@ -1,32 +1,8 @@
 (function(){
   function updateLangLinks(){
-    let path = window.location.pathname || '/';
-    // normalize multiple slashes
-    path = path.replace(/\/+/g, '/');
+    const path = window.location.pathname || '/';
+    const fileName = path.split('/').pop() || 'index.html';
     
-    // Ensure we handle root path correctly
-    if (path === '/' || path === '/rus/' || path === '/eng/') {
-        if (path === '/') path = '/index.html';
-        else if (path === '/rus/') path = '/rus/index.html';
-        else if (path === '/eng/') path = '/eng/index.html';
-    }
-
-    // Determine the relative filename from the root (e.g. /index.html, /shop.html)
-    let relativePath = path;
-    if (path.startsWith('/rus/')) {
-        relativePath = path.substring(4); // Remove '/rus'
-    } else if (path.startsWith('/eng/')) {
-        relativePath = path.substring(4); // Remove '/eng'
-    }
-    
-    // Ensure relativePath starts with /
-    if (!relativePath.startsWith('/')) relativePath = '/' + relativePath;
-
-    // Construct target URLs
-    const trHref = relativePath;
-    const ruHref = '/rus' + relativePath;
-    const engHref = '/eng' + relativePath;
-
     const container = document.querySelector('.top-lang-switch');
     if(!container) return;
 
@@ -34,24 +10,33 @@
       const lang = a.dataset.lang;
       if(!lang) return;
       
-      if(lang === 'tr') a.href = trHref;
-      if(lang === 'ru') a.href = ruHref;
-      if(lang === 'en') a.href = engHref;
+      let targetHref = '/index.html';
       
-      // Update active state
-      let isActive = false;
-      if (lang === 'tr' && !path.startsWith('/rus/') && !path.startsWith('/eng/')) isActive = true;
-      if (lang === 'ru' && path.startsWith('/rus/')) isActive = true;
-      if (lang === 'en' && path.startsWith('/eng/')) isActive = true;
+      if (lang === 'tr') {
+        // Turkish is root
+        targetHref = '/' + fileName;
+      } else if (lang === 'en') {
+        targetHref = '/eng/' + fileName;
+      } else if (lang === 'ru') {
+        targetHref = '/rus/' + fileName;
+      }
+
+      // Check if it's a known page or just fallback to index
+      // (Simple check: if we are in a subfolder, the fileName is what we want)
+      a.href = targetHref;
       
-      a.classList.toggle('active', isActive);
+      // Active state
+      const isEng = path.startsWith('/eng/');
+      const isRus = path.startsWith('/rus/');
+      const isTr = !isEng && !isRus;
+      
+      a.classList.toggle('active', (lang === 'en' && isEng) || (lang === 'ru' && isRus) || (lang === 'tr' && isTr));
     });
   }
 
   if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', updateLangLinks);
   else updateLangLinks();
 
-  // header might be injected after load; observe and update once present
   const observer = new MutationObserver((mutations, obs) => {
     if(document.querySelector('.top-lang-switch')){
       updateLangLinks();
