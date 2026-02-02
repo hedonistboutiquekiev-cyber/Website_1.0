@@ -1,22 +1,31 @@
 (function(){
-  function ensureIndex(p){
-    if(!p || p === '/') return '/index.html';
-    return p;
-  }
-
   function updateLangLinks(){
-    const raw = window.location.pathname || '/';
-    let path = raw;
-    if(path === '' ) path = '/';
+    let path = window.location.pathname || '/';
     // normalize multiple slashes
     path = path.replace(/\/+/g, '/');
+    
+    // Ensure we handle root path correctly
+    if (path === '/' || path === '/rus/' || path === '/eng/') {
+        if (path === '/') path = '/index.html';
+        else if (path === '/rus/') path = '/rus/index.html';
+        else if (path === '/eng/') path = '/eng/index.html';
+    }
 
-    // treat '/eng' prefix as english
-    const isEng = path.startsWith('/eng/');
+    // Determine the relative filename from the root (e.g. /index.html, /shop.html)
+    let relativePath = path;
+    if (path.startsWith('/rus/')) {
+        relativePath = path.substring(4); // Remove '/rus'
+    } else if (path.startsWith('/eng/')) {
+        relativePath = path.substring(4); // Remove '/eng'
+    }
+    
+    // Ensure relativePath starts with /
+    if (!relativePath.startsWith('/')) relativePath = '/' + relativePath;
 
-    // build target hrefs - always point to home pages to avoid 404s
-    const engHref = '/eng/index.html';
-    const trHref = '/index.html';
+    // Construct target URLs
+    const trHref = relativePath;
+    const ruHref = '/rus' + relativePath;
+    const engHref = '/eng' + relativePath;
 
     const container = document.querySelector('.top-lang-switch');
     if(!container) return;
@@ -24,9 +33,18 @@
     container.querySelectorAll('.lang-flag').forEach(a => {
       const lang = a.dataset.lang;
       if(!lang) return;
-      if(lang === 'en') a.href = engHref;
+      
       if(lang === 'tr') a.href = trHref;
-      a.classList.toggle('active', (lang === 'en' && isEng) || (lang === 'tr' && !isEng));
+      if(lang === 'ru') a.href = ruHref;
+      if(lang === 'en') a.href = engHref;
+      
+      // Update active state
+      let isActive = false;
+      if (lang === 'tr' && !path.startsWith('/rus/') && !path.startsWith('/eng/')) isActive = true;
+      if (lang === 'ru' && path.startsWith('/rus/')) isActive = true;
+      if (lang === 'en' && path.startsWith('/eng/')) isActive = true;
+      
+      a.classList.toggle('active', isActive);
     });
   }
 
