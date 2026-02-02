@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hoodie – AlbaSpace</title>
+  
+  <!-- Ваши оригинальные стили (для хедера и футера) -->
+  <link rel="stylesheet" href="/assets/css/site.css">
+  
+  <!-- Tailwind и шрифты для нового дизайна страницы -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Ваши оригинальные скрипты -->
+  <script src="/assets/js/include.js" defer></script>
+  <script src="/assets/js/menu-toggle.js" defer></script>
+  <script src="/assets/js/cart.js" defer></script>
+  <!-- product-gallery.js не подключаем, так как используется новая встроенная логика для галереи -->
+
+  <style>
+    /* Настройки нового дизайна */
+    :root {
+      --header-bg: #020617;
+      --accent: #00c2ff;
+      --accent-hover: #0099cc;
+      --page-bg: #020617;
+      --text-main: #f3f4f6;
+    }
+
+    body {
+      background-color: var(--page-bg);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    /* Фон */
+    .space-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 50% 50%, #1e1b4b 0%, #030712 100%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* Галерея */
+    .main-image-container {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+    
+    .main-image-container:hover {
+      transform: scale(1.02);
+    }
+
+    .thumb-btn {
+      border: 2px solid transparent;
+      transition: all 0.2s ease;
+      background: rgba(255, 255, 255, 0.05);
+      cursor: pointer;
+    }
+
+    .thumb-btn.active {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* Кнопки */
+    .btn-glow {
+      background: var(--accent);
+      box-shadow: 0 0 20px rgba(0, 194, 255, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .btn-glow:hover {
+      background: var(--accent-hover);
+      box-shadow: 0 0 30px rgba(0, 194, 255, 0.5);
+      transform: translateY(-1px);
+    }
+
+    .qty-input::-webkit-inner-spin-button {
+      display: none;
+    }
+
+    /* Эффект стекла */
+    .glass-card {
+      background: rgba(17, 24, 39, 0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Анимации */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Иконки оплаты */
+    .payment-icons img {
+      height: 24px;
+      width: auto;
+      object-fit: contain;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+    
+    .payment-icons img:hover {
+      opacity: 1;
+    }
+        /* ===== Local overrides to beat global site.css ===== */
+    /* Ensure main product image is reduced to 70% and not limited by global rules */
+    #mainImage,
+    .main-image-container img {
+      width: 70% !important;
+      max-width: 720px !important;
+      display: block !important;
+      margin: 0 auto !important;
+      height: auto !important;
+      object-fit: cover !important;
+      border-radius: 24px !important;
+    }
+
+    /* Thumbnails: force square shape with rounded corners */
+    .thumb-btn {
+      width: 80px !important;
+      height: 80px !important;
+      min-width: 80px !important;
+      min-height: 80px !important;
+      border-radius: 12px !important;
+      overflow: hidden !important;
+      padding: 0 !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+    }
+
+    .thumb-btn img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      display: block !important;
+      border-radius: inherit !important;
+    }
+  </style>
+</head>
+<body>
+  <!-- Ваш оригинальный хедер -->
+  <div data-include="/header-ru.html"></div>
+
+  
+
+  <main class="max-w-7xl mx-auto px-4 py-8 md:py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start product-grid">
+      
+      <!-- Галерея -->
+      <div class="reveal">
+        <div class="main-image-container mb-6">
+          <img id="mainImage" src="/assets/images/hoodie1.png" alt="Hoodie" class="w-full h-auto object-cover aspect-[4/5]">
+        </div>
+        <div class="flex gap-4 overflow-x-auto pb-2" id="galleryThumbs">
+          <button class="thumb-btn active rounded-xl flex-shrink-0 w-20 h-20 md:w-24 md:h-24 overflow-hidden" onclick="changeImage(this, '/assets/images/hoodie1.png')">
+            <img src="/assets/images/hoodie1.png" class="w-full h-full object-cover">
+          </button>
+          <button class="thumb-btn rounded-xl flex-shrink-0 w-20 h-20 md:w-24 md:h-24 overflow-hidden" onclick="changeImage(this, '/assets/images/hoodie1.png')">
+            <img src="/assets/images/hoodie1.png" class="w-full h-full object-cover">
+          </button>
+          <button class="thumb-btn rounded-xl flex-shrink-0 w-20 h-20 md:w-24 md:h-24 overflow-hidden" onclick="changeImage(this, '/assets/images/hoodie1.png')">
+            <img src="/assets/images/hoodie1.png" class="w-full h-full object-cover">
+          </button>
+        </div>
+      </div>
+
+      <!-- Детали товара -->
+      <div class="reveal" style="transition-delay: 0.1s;">
+        <nav class="text-xs uppercase tracking-widest text-gray-500 mb-4">Продукты / Одежда / Худи</nav>
+        <h1 class="text-4xl md:text-5xl font-bold mb-4 tracking-tight uppercase">Худи</h1>
+        <div class="text-3xl font-light text-white mb-8">980.00 TL</div>
+        
+        <div class="glass-card p-6 rounded-3xl mb-8">
+          <h3 class="text-sm font-semibold uppercase text-gray-400 mb-4">Особенности</h3>
+          <ul class="space-y-3 text-gray-300">
+            <li class="flex items-center gap-3">
+              <span class="w-1.5 h-1.5 rounded-full" style="background:var(--accent)"></span>
+              Высококачественная ткань
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="w-1.5 h-1.5 rounded-full" style="background:var(--accent)"></span>
+              Удобное и теплое
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="w-1.5 h-1.5 rounded-full" style="background:var(--accent)"></span>
+              Логотип AlbaSpace
+            </li>
+            <li class="flex items-center gap-3">
+              <span class="w-1.5 h-1.5 rounded-full" style="background:var(--accent)"></span>
+              Универсальный размер
+            </li>
+          </ul>
+        </div>
+
+        
+        <!-- Payment Icons -->
+        <div class="flex flex-wrap items-center gap-6 payment-icons mb-6">
+          <img src="/assets/icons/iyzico_tr.png" alt="iyzico">
+          <img src="/assets/icons/mastercard.png" alt="mastercard">
+          <img src="/assets/icons/visa.png" alt="visa">
+        </div><div class="flex flex-col sm:flex-row gap-4 mb-8">
+          <!-- Выбор количества -->
+          <div class="flex items-center bg-gray-900 border border-gray-800 rounded-2xl p-1 h-14" data-qty>
+            <button class="w-12 h-full flex items-center justify-center text-xl hover:text-white transition" onclick="updateQty(-1)">&minus;</button>
+            <input type="number" id="qtyInput" value="1" min="1" class="qty-input w-12 bg-transparent text-center font-semibold outline-none text-white" data-qty-input>
+            <button class="w-12 h-full flex items-center justify-center text-xl hover:text-white transition" onclick="updateQty(1)">&plus;</button>
+          </div>
+          
+          <!-- Кнопка добавления в корзину -->
+          <button id="addToCartBtn" 
+            class="btn-glow flex-1 h-14 rounded-2xl text-black font-bold uppercase tracking-wider transition-all"
+            data-product-id="hoodie1"
+            data-product-name="Hoodie"
+            data-product-price="980"
+            data-product-image="/assets/images/hoodie1.png"
+            data-add-label="В КОРЗИНУ"
+            data-added-label="ДОБАВЛЕНО!">
+            В КОРЗИНУ
+          </button>
+        </div>
+
+        <!-- Иконки оплаты -->
+      </div>
+    </div>
+
+    <!-- Похожие товары -->
+    <section class="mt-24 reveal">
+      <div class="flex justify-between items-end mb-10">
+        <div>
+          <h2 class="text-3xl font-bold uppercase tracking-tight">Вам также может понравиться</h2>
+          <div class="h-1 w-20 bg-blue-500 mt-2 rounded-full"></div>
+        </div>
+      </div>
+
+      <div id="related-products-container" class="grid grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </section>
+  </main>
+
+  <!-- Ваш оригинальный футер -->
+  <div data-include="/footer-ru.html"></div>
+
+  <script>
+    // Логика галереи
+    function changeImage(el, src) {
+      document.getElementById('mainImage').src = src;
+      document.querySelectorAll('.thumb-btn').forEach(btn => btn.classList.remove('active'));
+      el.classList.add('active');
+    }
+
+    // Логика количества
+    function updateQty(delta) {
+      const input = document.getElementById('qtyInput');
+      let val = parseInt(input.value) + delta;
+      if (val < 1) val = 1;
+      input.value = val;
+    }
+
+    // Анимация при скролле
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Логика корзины (с поддержкой вашего cart.js)
+    const cartBtn = document.getElementById('addToCartBtn');
+    cartBtn.addEventListener('click', () => {
+      const input = document.getElementById('qtyInput');
+      const qty = parseInt(input.value || '1', 10);
+      
+      // Проверяем, загрузился ли глобальный менеджер корзины из вашего cart.js
+      if (typeof cartManager !== 'undefined') {
+          cartManager.addItem({
+            id: cartBtn.dataset.productId,
+            name: cartBtn.dataset.productName,
+            price: Number(cartBtn.dataset.productPrice),
+            image: cartBtn.dataset.productImage,
+            url: window.location.pathname,
+            qty
+          });
+      } else {
+        console.warn('cartManager не найден. Проверьте подключение /assets/js/cart.js');
+      }
+
+      // Визуальная обратная связь
+      const originalText = cartBtn.innerHTML;
+      cartBtn.innerHTML = cartBtn.dataset.addedLabel || 'EKLENDİ!';
+      cartBtn.style.background = '#22c55e';
+      cartBtn.disabled = true;
+      
+      setTimeout(() => {
+        cartBtn.innerHTML = originalText;
+        cartBtn.style.background = '';
+        cartBtn.disabled = false;
+      }, 1400);
+    });
+  </script>
+<script src="/assets/js/related-products.js" defer></script>
+</body>
+</html>

@@ -24,13 +24,31 @@ const enProducts = [
   { title: "Book", price: "1000.00 TL", image: "/assets/images/albamenvelara.jpg", link: "product-albamenvelara.html" }
 ];
 
+const ruProducts = [
+  { title: "Термос Stanley", price: "2400.00 TL", image: "/assets/images/stanley.png", link: "product-stanley.html" },
+  { title: "Футболка", price: "630.00 TL", image: "/assets/images/shirt1.png", link: "product-shirt1.html" },
+  { title: "Футболка AlbaSpace", price: "630.00 TL", image: "/assets/images/shirt.png", link: "product-shirt.html" },
+  { title: "Худи", price: "980.00 TL", image: "/assets/images/hoodie1.png", link: "product-hoodie1.html" },
+  { title: "Худи AlbaSpace", price: "980.00 TL", image: "/assets/images/hoodie.png", link: "product-hoodie.html" },
+  { title: "Бесконечный куб", price: "120.00 TL", image: "/assets/images/hat.png", link: "product-hat.html" },
+  { title: "3D модель AlbaSpace Logo", price: "$100.00", image: "/assets/images/albaspacelogo3dmodel.png", link: "product-dragon.html" },
+  { title: "3D модель AlbaSpace LOGO", price: "300.00 TL", image: "/assets/images/albaspacelogo3dmodel.png", link: "product-albaspacelogo.html" },
+  { title: "Книга PDF", price: "160.00 TL", image: "/assets/images/albemanvelara1.jpg", link: "product-albamenvelara1.html" },
+  { title: "Книга", price: "1000.00 TL", image: "/assets/images/albamenvelara.jpg", link: "product-albamenvelara.html" }
+];
+
 document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('related-products-container');
     if (!container) return;
 
     // Determine language from HTML lang attribute
     const lang = document.documentElement.lang || 'tr';
-    const products = lang === 'en' ? enProducts : trProducts;
+    let products = trProducts;
+    if (lang === 'en') {
+        products = enProducts;
+    } else if (lang === 'ru') {
+        products = ruProducts;
+    }
     
     // Determine current page to exclude it
     // Use window.location.pathname
