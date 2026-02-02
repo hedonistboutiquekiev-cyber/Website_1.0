@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign Up – AlbaSpace</title>
+  <link rel="stylesheet" href="/assets/css/site.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <script src="/assets/js/include.js" defer></script>
+  <style>
+    :root {
+      --page-bg: #020617;
+      --accent: #00c2ff;
+      --text-main: #f3f4f6;
+    }
+    body {
+      background-color: var(--page-bg);
+      color: var(--text-main);
+      font-family: 'Inter', sans-serif;
+    }
+    .glass-card {
+      background: rgba(17, 24, 39, 0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .input-field {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: white;
+      transition: all 0.3s ease;
+    }
+    .input-field:focus {
+      border-color: var(--accent);
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(0, 194, 255, 0.2);
+    }
+    .btn-primary {
+      background-color: var(--accent);
+      color: #000;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+    .btn-primary:hover {
+      background-color: #38bdf8;
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+    }
+    .btn-google {
+      background: white;
+      color: #333;
+      transition: all 0.3s ease;
+    }
+    .btn-google:hover {
+      background: #f3f4f6;
+    }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen">
+  <div data-include="/header-en.html"></div>
+
+  <main class="flex-grow flex items-center justify-center px-4 py-20">
+    <div class="glass-card w-full max-w-md p-8 rounded-3xl shadow-2xl">
+      <h1 class="text-3xl font-bold text-center mb-8 text-white">Sign Up</h1>
+      
+      <form action="/eng/profile.html" class="space-y-6">
+        <div>
+          <label class="block text-sm font-medium text-gray-400 mb-2">Username</label>
+          <input type="text" required class="input-field w-full px-4 py-3 rounded-xl" placeholder="Enter your username">
+        </div>
+        
+        <div>
+          <label class="block text-sm font-medium text-gray-400 mb-2">Password</label>
+          <input type="password" required class="input-field w-full px-4 py-3 rounded-xl" placeholder="••••••••">
+        </div>
+
+        <button type="submit" class="btn-primary w-full py-3 rounded-xl text-lg mt-6">
+          Confirm
+        </button>
+      </form>
+
+      <div class="flex items-center my-6">
+        <div class="flex-grow h-px bg-gray-700"></div>
+        <span class="px-4 text-gray-500 text-sm">or</span>
+        <div class="flex-grow h-px bg-gray-700"></div>
+      </div>
+
+      <button class="btn-google w-full py-3 rounded-xl flex items-center justify-center gap-3 font-medium">
+        <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" class="w-6 h-6">
+        Login with Google
+      </button>
+
+      <p class="text-center mt-6 text-gray-400 text-sm">
+        Already have an account? <a href="#" class="text-[#00c2ff] hover:underline">Sign In</a>
+      </p>
+    </div>
+  </main>
+
+  <div data-include="/footer-en.html"></div>
+</body>
+</html>
