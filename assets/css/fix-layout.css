@@ -1,12 +1,40 @@
 /* Fix for Header Icons and Layout */
 
-/* Header Social Icons - Reduced size and two-row layout */
+/* Header Social Icons - Default (Mobile) */
 .header-social {
     display: flex !important;
     flex-direction: column !important;
     align-items: center !important;
     gap: 6px !important;
 }
+
+/* Header Flags - Default (Desktop/Shared) */
+.header-flags {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+.header-flags img {
+    width: 16px !important;
+    height: 16px !important;
+}
+
+/* Desktop Overrides (min-width: 769px) */
+@media (min-width: 769px) {
+    .header-social {
+        flex-direction: row !important; /* Horizontal on desktop */
+        gap: 20px !important;
+    }
+    
+    .header-flags {
+        margin-left: 20px !important;
+        padding-left: 15px !important;
+        border-left: 1px solid rgba(255,255,255,0.15) !important;
+    }
+}
+
 
 .header-social .social-row {
     display: flex !important;
@@ -119,7 +147,7 @@
         order: 3;
         width: 100% !important;
         flex-direction: row !important; /* Horizontal icons */
-        justify-content: space-between !important; /* Left align social, right align flags */
+        justify-content: space-between !important; /* Spread them out */
         align-items: center !important;
         margin-left: 0 !important;
         padding-top: 10px; /* Space from logo */
@@ -129,6 +157,20 @@
     /* Ensure the social row inside is also horizontal */
     .header-social .social-row {
         width: auto !important;
+        /* Make social icons stick to left */
+        margin-right: auto !important;
+    }
+
+    /* Center group: AI, Alien, Cart */
+    .top-lang-switch {
+        margin: 0 auto !important; /* Center it */
+        display: flex !important;
+        justify-content: center !important;
+    }
+
+    /* Flags on the right side of the social bar in mobile */
+    .header-flags {
+        margin-left: auto !important; /* Push to right */
     }
     
     /* 3. Footer: Horizontal Social Icons */
