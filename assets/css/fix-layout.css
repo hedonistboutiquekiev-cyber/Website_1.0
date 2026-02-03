@@ -208,3 +208,17 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
     width: 100% !important;
 }
+
+/* 5. Footer Updates: Dark Blue Background + Horizontal Icons */
+.footer {
+    background-color: #020617 !important; /* Dark blue background */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-social,
+.footer-social--row {
+    display: flex !important;
+    flex-direction: row !important; /* Force horizontal layout */
+    gap: 20px !important;
+    flex-wrap: wrap !important;
+}
