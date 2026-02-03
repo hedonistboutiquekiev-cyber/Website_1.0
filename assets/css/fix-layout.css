@@ -1,0 +1,61 @@
+/* Fix for Header Icons and Layout */
+.header-social {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 10px !important;
+}
+
+.header-social .social-row {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 10px !important;
+}
+
+.top-lang-switch {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+/* Hide Burger Menu on Desktop */
+@media (min-width: 1025px) {
+    .menu-toggle {
+        display: none !important;
+    }
+}
+
+/* Alien Dropdown Top Layer Fix */
+.alien-dropdown-container {
+    position: relative !important;
+    z-index: 9999 !important;
+}
+
+#alienMenu {
+    z-index: 10000 !important;
+    position: absolute !important;
+}
+
+/* Footer Icon Size Restoration */
+.footer-social img {
+    width: 24px !important;
+    height: 24px !important;
+    max-width: none !important;
+}
+
+.footer-social--xl img {
+    width: 32px !important;
+    height: 32px !important;
+}
+
+/* Ensure no vertical stacking in header inner */
+.header-inner {
+    flex-wrap: nowrap !important;
+}
+
+@media (max-width: 1024px) {
+    .header-inner {
+        flex-wrap: wrap !important;
+    }
+}
