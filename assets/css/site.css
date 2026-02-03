@@ -143,9 +143,9 @@ body{
 }
 
 /* Fix for dropdown options visibility on dark themes */
-select option {
-  color: #000000;
-  background-color: #ffffff;
+select, select option {
+  color: #000000 !important;
+  background-color: #ffffff !important;
 }
 
 /* =========================

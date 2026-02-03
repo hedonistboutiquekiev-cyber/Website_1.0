@@ -222,3 +222,10 @@
     gap: 20px !important;
     flex-wrap: wrap !important;
 }
+
+/* Fix for dropdown options visibility on dark themes
+   Ensures text is black on the default white background of options */
+select, select option {
+  color: #000000 !important;
+  background-color: #ffffff !important;
+}
