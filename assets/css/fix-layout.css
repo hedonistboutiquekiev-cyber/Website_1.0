@@ -119,7 +119,7 @@
         order: 3;
         width: 100% !important;
         flex-direction: row !important; /* Horizontal icons */
-        justify-content: flex-start !important; /* Left align */
+        justify-content: space-between !important; /* Left align social, right align flags */
         align-items: center !important;
         margin-left: 0 !important;
         padding-top: 10px; /* Space from logo */
@@ -167,4 +167,44 @@
 .mobile-portal-nav .dropdown-menu a:hover {
     background-color: rgba(255, 255, 255, 0.1) !important;
     color: #fff !important;
+}
+
+/* 4. Main Mobile Menu (Sliding down): Compact, Dark Blue, Top-Right */
+.mobile-portal-nav {
+    position: absolute !important;
+    top: 70px !important; /* Appears below header */
+    left: auto !important;
+    right: 20px !important; /* Slightly right of center (aligned to right edge with margin) */
+    width: auto !important;
+    min-width: 220px;
+    max-width: 80vw;
+    height: auto !important; /* Compact height */
+    max-height: 70vh;
+    background: #020617 !important; /* Dark blue, no transparency */
+    opacity: 0;
+    pointer-events: none;
+    padding: 20px !important;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 15px !important;
+    transform: translateY(-20px) !important; /* Start slightly above */
+    transition: opacity 0.3s ease, transform 0.3s ease !important;
+    overflow-y: auto !important;
+}
+
+.mobile-portal-nav.nav-open {
+    transform: translateY(0) !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+.mobile-portal-nav a {
+    font-size: 16px !important; /* Slightly smaller text for compact menu */
+    padding: 8px !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+    width: 100% !important;
 }
