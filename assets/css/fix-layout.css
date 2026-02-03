@@ -88,3 +88,83 @@
         flex-wrap: wrap !important;
     }
 }
+
+/* =========================================
+   NEW MOBILE UPDATES (2026-02-03)
+   ========================================= */
+
+@media (max-width: 768px) {
+    /* 1. Header: Social Icons on the left, under Alvaspace */
+    .header-inner {
+        flex-wrap: wrap !important;
+        justify-content: space-between !important;
+        padding-bottom: 10px; /* Add some space at bottom */
+    }
+
+    /* Logo stays on left (order 1 default) */
+    .header-logo {
+        order: 1;
+        flex: 0 0 auto;
+    }
+
+    /* Burger menu on right */
+    .menu-toggle {
+        order: 2;
+        flex: 0 0 auto;
+        margin-left: auto;
+    }
+
+    /* Social icons move to new row, left aligned */
+    .header-social {
+        order: 3;
+        width: 100% !important;
+        flex-direction: row !important; /* Horizontal icons */
+        justify-content: flex-start !important; /* Left align */
+        align-items: center !important;
+        margin-left: 0 !important;
+        padding-top: 10px; /* Space from logo */
+        padding-left: 4px; /* Slight alignment with logo text */
+    }
+    
+    /* Ensure the social row inside is also horizontal */
+    .header-social .social-row {
+        width: auto !important;
+    }
+    
+    /* 3. Footer: Horizontal Social Icons */
+    .footer-social,
+    .footer-social--row {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important; /* Center in footer */
+        gap: 20px !important;
+    }
+}
+
+/* 2. Mobile Menu Dropdown: Small, Dark Blue, Non-transparent */
+.mobile-portal-nav .dropdown-menu {
+    background-color: #020617 !important; /* Dark blue */
+    opacity: 1 !important; /* Non-transparent */
+    width: auto !important; /* Small width (fit content) */
+    min-width: 140px;
+    max-width: 220px;
+    margin: 10px auto !important; /* Center horizontally */
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5) !important;
+    padding: 5px 0 !important;
+}
+
+.mobile-portal-nav .dropdown-menu a {
+    font-size: 14px !important; /* Smaller text */
+    padding: 8px 15px !important;
+    color: #e5e7eb !important;
+    text-align: center !important;
+    border-bottom: none !important;
+}
+
+.mobile-portal-nav .dropdown-menu a:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: #fff !important;
+}
