@@ -1472,3 +1472,97 @@ select option {
     gap: 10px;
     padding-bottom: 10px;
 }
+
+/* =========================
+   FOOTER RESTORATION PATCH
+   ========================= */
+
+.footer {
+  width: 100%;
+  padding: 40px 20px;
+  background: transparent;
+  color: #fff;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  margin-top: 40px;
+}
+
+.footer-grid {
+  display: grid;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-grid--3 {
+  grid-template-columns: repeat(1, 1fr);
+}
+
+@media (min-width: 768px) {
+  .footer-grid--3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Footer Left */
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.footer-logo p {
+  margin: 10px 0 0;
+  color: #9ca3af;
+  font-size: 0.9em;
+}
+
+/* Footer Actions (The broken buttons) */
+.footer-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.footer-action {
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 16px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #fff;
+  transition: all 0.2s ease;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer-action:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.footer-action__title {
+  font-weight: 600;
+  font-size: 1em;
+  margin-bottom: 4px;
+  display: block;
+  color: #fff;
+}
+
+.footer-action__value {
+  font-size: 0.9em;
+  color: #9ca3af;
+  display: block;
+  line-height: 1.5;
+}
+
+.footer-action__hint {
+  font-size: 0.75em;
+  color: #00c2ff; /* Accent color */
+  margin-top: 10px;
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+

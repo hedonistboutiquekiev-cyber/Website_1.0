@@ -5,6 +5,14 @@ runAfterDomReady(() => {
   window.__disableAiWidgets = false;
   // 1. ЗАПУСК АНАЛИТИКИ (В первую очередь)
   injectAnalytics();
+
+  // Load lang-switch.js dynamically if not present
+  if (!document.querySelector('script[src*="lang-switch.js"]')) {
+    const script = document.createElement('script');
+    script.src = '/assets/js/lang-switch.js';
+    script.defer = true;
+    document.head.appendChild(script);
+  }
   // 2. Favicon
   (function ensureFavicon() {
     try {

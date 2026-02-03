@@ -51,7 +51,11 @@
   // Закрываем меню при клике по пункту (для мобильного портала и оригинала)
   function attachCloseOnLink(container) {
     container.addEventListener('click', function (e) {
-      if (e.target.tagName.toLowerCase() === 'a') {
+      var link = e.target.closest('a');
+      if (link) {
+        // Если это триггер выпадающего меню — не закрываем общее меню
+        if (link.classList.contains('dropdown-trigger')) return;
+
         container.classList.remove('nav-open');
         toggle.classList.remove('is-open');
         toggle.setAttribute('aria-expanded', 'false');
@@ -69,8 +73,11 @@
     triggers.forEach(function(trigger) {
       trigger.addEventListener('click', function(e) {
         // only intercept on mobile portal to avoid changing desktop behaviour
-        if (container === mobileNav) {
+        // We check for the class name to be more robust than object identity
+        if (container.classList.contains('mobile-portal-nav')) {
           e.preventDefault();
+          e.stopPropagation();
+          
           var dropdown = trigger.parentElement;
           var isActive = dropdown.classList.toggle('active');
           trigger.setAttribute('aria-expanded', isActive ? 'true' : 'false');

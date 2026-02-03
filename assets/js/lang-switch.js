@@ -1,8 +1,14 @@
+
 (function(){
-  function updateLangLinks(){
+  window.setupLangSwitch = function() {
     const path = window.location.pathname || '/';
-    const fileName = path.split('/').pop() || 'index.html';
+    // Get filename, handling both root files and subdirectories
+    let fileName = path.split('/').pop();
+    if (!fileName) fileName = 'index.html'; // Handle root path '/'
     
+    // Safety check for empty filename (e.g. trailing slash)
+    if (path.endsWith('/')) fileName = 'index.html';
+
     const container = document.querySelector('.top-lang-switch');
     if(!container) return;
 
@@ -21,8 +27,6 @@
         targetHref = '/rus/' + fileName;
       }
 
-      // Check if it's a known page or just fallback to index
-      // (Simple check: if we are in a subfolder, the fileName is what we want)
       a.href = targetHref;
       
       // Active state
@@ -32,15 +36,20 @@
       
       a.classList.toggle('active', (lang === 'en' && isEng) || (lang === 'ru' && isRus) || (lang === 'tr' && isTr));
     });
+  };
+
+  // Run on load
+  if(document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', window.setupLangSwitch);
+  } else {
+    window.setupLangSwitch();
   }
 
-  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', updateLangLinks);
-  else updateLangLinks();
-
+  // Observer for dynamic changes (like header injection)
   const observer = new MutationObserver((mutations, obs) => {
     if(document.querySelector('.top-lang-switch')){
-      updateLangLinks();
-      obs.disconnect();
+      window.setupLangSwitch();
+      // Don't disconnect, as header might be re-injected or changed
     }
   });
   observer.observe(document.body, { childList: true, subtree: true });
