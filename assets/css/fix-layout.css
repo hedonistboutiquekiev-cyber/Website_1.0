@@ -145,70 +145,98 @@
 }
 
 /* =========================================
-   NEW MOBILE UPDATES (2026-02-03)
+   NEW MOBILE UPDATES (2026-02-04)
    ========================================= */
 
 @media (max-width: 768px) {
-    /* 1. Header: Social Icons on the left, under Alvaspace */
-    .header-inner {
-        flex-wrap: wrap !important;
-        justify-content: space-between !important;
-        padding-bottom: 10px; /* Add some space at bottom */
-    }
+    /* 1. Header Layout Grid
+   Rows:
+   1. Logo (left) | Menu Button (right)
+   2. Left Group (Albamen, Cart, Alien) | Right Group (Social Icons)
+   3. Flags (Right side, under social icons)
+*/
 
-    /* Logo stays on left (order 1 default) */
-    .header-logo {
-        order: 1;
-        flex: 0 0 auto;
-    }
+.header-inner {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important; /* Two equal columns */
+    grid-template-rows: auto auto auto !important; /* Three rows */
+    gap: 10px !important;
+    padding-bottom: 10px;
+    align-items: center !important;
+}
 
-    /* Burger menu on right */
-    .menu-toggle {
-        order: 2;
-        flex: 0 0 auto;
-        margin-left: auto;
-    }
+/* Row 1: Logo (Left) */
+.header-logo {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    justify-self: start;
+}
 
-    /* Social icons move to new row, left aligned */
-    .header-social {
-        order: 3;
-        width: 100% !important;
-        flex-direction: row !important; /* Horizontal icons */
-        justify-content: space-between !important; /* Spread them out */
-        align-items: center !important;
-        margin-left: 0 !important;
-        padding-top: 10px; /* Space from logo */
-        padding-left: 4px; /* Slight alignment with logo text */
-    }
-    
-    /* Ensure the social row inside is also horizontal */
-    .header-social .social-row {
-        width: auto !important;
-        /* Make social icons stick to left */
-        margin-right: auto !important;
-    }
+/* Row 1: Menu Button (Right) */
+.menu-toggle {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    justify-self: end;
+    margin-left: 0 !important;
+}
 
-    /* Center group: AI, Alien, Cart */
-    .top-lang-switch {
-        margin: 0 auto !important; /* Center it */
-        display: flex !important;
-        justify-content: center !important;
-    }
+/* Row 2: Left Group (Albamen, Cart, Alien) -> .top-lang-switch */
+.top-lang-switch {
+    grid-column: 1 / 2;
+    grid-row: 2 / 3;
+    justify-self: start;
+    margin: 0 !important;
+    display: flex !important;
+    gap: 8px !important;
+}
 
-    /* Flags on the right side of the social bar in mobile */
-    .header-flags {
-        margin-left: auto !important; /* Push to right */
-    }
-    
-    /* 3. Footer: Horizontal Social Icons */
-    .footer-social,
-    .footer-social--row {
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: wrap !important;
-        justify-content: center !important; /* Center in footer */
-        gap: 20px !important;
-    }
+/* Row 2: Right Group (Social Icons) -> .header-social */
+.header-social {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    justify-self: end;
+    width: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    flex-direction: row !important;
+}
+
+.header-social .social-row {
+    justify-content: flex-end !important;
+    gap: 8px !important;
+}
+
+/* Row 3: Flags (Right side, under social icons) */
+.header-flags {
+    grid-column: 2 / 3;
+    grid-row: 3 / 4;
+    justify-self: end;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+}
+
+/* Ensure icons are visible and sized correctly */
+.header-social a img,
+.top-lang-switch img,
+.header-flags img {
+    width: 32px !important;
+    height: 32px !important;
+}
+
+/* Cart icon size for mobile (keep it consistent) */
+.header-cart-icon img {
+    width: 32px !important;
+    height: 32px !important;
+}
+}
+
+/* Desktop Only Overrides for Cart Icon */
+@media (min-width: 769px) {
+.header-cart-icon img {
+    width: 16px !important;
+    height: 16px !important;
+}
 }
 
 /* 2. Mobile Menu Dropdown: Small, Dark Blue, Non-transparent */
