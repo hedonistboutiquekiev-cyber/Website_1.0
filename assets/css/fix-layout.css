@@ -150,85 +150,89 @@
 
 @media (max-width: 768px) {
     /* 1. Header Layout Grid
-   Rows:
-   1. Logo (left) | Menu Button (right)
-   2. Left Group (Albamen, Cart, Alien) | Right Group (Social Icons)
-   3. Flags (Right side, under social icons)
-*/
+       Rows:
+       1. Logo (left) | Flags (center) | Menu Button (right)
+       2. Left Group (Albamen, Cart, Alien) | Right Group (Social Icons)
+    */
+    
+    .header-inner {
+        display: grid !important;
+        grid-template-columns: auto 1fr auto !important; /* Logo, Space/Flags, Menu */
+        grid-template-rows: auto auto !important; /* Two rows */
+        gap: 10px !important;
+        padding-bottom: 10px;
+        align-items: center !important;
+    }
 
-.header-inner {
-    display: grid !important;
-    grid-template-columns: 1fr 1fr !important; /* Two equal columns */
-    grid-template-rows: auto auto auto !important; /* Three rows */
-    gap: 10px !important;
-    padding-bottom: 10px;
-    align-items: center !important;
-}
+    /* Row 1: Logo (Left) */
+    .header-logo {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+        justify-self: start;
+    }
 
-/* Row 1: Logo (Left) */
-.header-logo {
-    grid-column: 1 / 2;
-    grid-row: 1 / 2;
-    justify-self: start;
-}
+    /* Row 1: Flags (Center) */
+    .header-flags {
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+        justify-self: center; /* Middle between Logo and Menu */
+        align-self: center;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+        display: flex !important;
+        gap: 8px !important;
+    }
 
-/* Row 1: Menu Button (Right) */
-.menu-toggle {
-    grid-column: 2 / 3;
-    grid-row: 1 / 2;
-    justify-self: end;
-    margin-left: 0 !important;
-}
+    /* Row 1: Menu Button (Right) */
+    .menu-toggle {
+        grid-column: 3 / 4;
+        grid-row: 1 / 2;
+        justify-self: end;
+        margin-left: 0 !important;
+    }
 
-/* Row 2: Left Group (Albamen, Cart, Alien) -> .top-lang-switch */
-.top-lang-switch {
-    grid-column: 1 / 2;
-    grid-row: 2 / 3;
-    justify-self: start;
-    margin: 0 !important;
-    display: flex !important;
-    gap: 8px !important;
-}
+    /* Row 2: Left Group (Albamen, Cart, Alien) -> .top-lang-switch */
+    .top-lang-switch {
+        grid-column: 1 / 3; /* Span left and middle */
+        grid-row: 2 / 3;
+        justify-self: start;
+        margin: 0 !important;
+        display: flex !important;
+        gap: 8px !important;
+        margin-top: 5px !important;
+    }
 
-/* Row 2: Right Group (Social Icons) -> .header-social */
-.header-social {
-    grid-column: 2 / 3;
-    grid-row: 2 / 3;
-    justify-self: end;
-    width: auto !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    flex-direction: row !important;
-}
-
-.header-social .social-row {
-    justify-content: flex-end !important;
-    gap: 8px !important;
-}
-
-/* Row 3: Flags (Right side, under social icons) */
-.header-flags {
-    grid-column: 2 / 3;
-    grid-row: 3 / 4;
-    justify-self: end;
-    margin: 0 !important;
-    padding: 0 !important;
-    border: none !important;
-}
-
-/* Ensure icons are visible and sized correctly */
-.header-social a img,
-.top-lang-switch img,
-.header-flags img {
-    width: 32px !important;
-    height: 32px !important;
-}
-
-/* Cart icon size for mobile (keep it consistent) */
-.header-cart-icon img {
-    width: 32px !important;
-    height: 32px !important;
-}
+    /* Row 2: Right Group (Social Icons) -> .header-social */
+    .header-social {
+        grid-column: 2 / 4; /* Span middle and right */
+        grid-row: 2 / 3;
+        justify-self: end;
+        width: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        flex-direction: row !important;
+        margin-top: 5px !important;
+    }
+    
+    .header-social .social-row {
+        justify-content: flex-end !important;
+        gap: 8px !important;
+    }
+    
+    /* Ensure icons are visible and sized correctly */
+    .header-social a img,
+    .top-lang-switch img,
+    .header-flags img {
+        width: 32px !important;
+        height: 32px !important;
+    }
+    
+    /* Cart icon size for mobile (keep it consistent) */
+    .header-cart-icon img {
+        width: 32px !important;
+        height: 32px !important;
+    }
 }
 
 /* Desktop Only Overrides for Cart Icon */
