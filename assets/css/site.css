@@ -1512,8 +1512,8 @@ select, select option {
 /* Text/Image part of logo (AlbaSpace) */
 .header-logo img.albaspace-img,
 .header-logo .albaspace-img {
-  height: 44px !important;
-  max-height: 80px !important;
+  height: 88px !important; /* 2x of 44px */
+  max-height: 120px !important;
 }
 
 /* 2. Social Icons in Header */

@@ -17,8 +17,8 @@
 }
 
 .header-flags img {
-    width: 16px !important;
-    height: 16px !important;
+    width: 32px !important;
+    height: 32px !important;
 }
 
 /* Desktop Overrides (min-width: 769px) */
@@ -43,9 +43,10 @@
     align-items: center !important;
 }
 
+/* Updated 2026-02-04: User requested 2x size for social icons (approx 32px-40px) */
 .header-social a img {
-    width: 16px !important;
-    height: 16px !important;
+    width: 32px !important;
+    height: 32px !important;
     max-width: none !important;
 }
 
@@ -65,15 +66,16 @@
     justify-content: center !important;
 }
 
+/* Updated 2026-02-04: User requested 2x size for AI and Alien icons */
 .top-lang-switch img {
-    width: 16px !important;
-    height: 16px !important;
+    width: 32px !important;
+    height: 32px !important;
     max-width: none !important;
 }
 
 .header-cart-icon img {
-    width: 16px !important;
-    height: 16px !important;
+    width: 32px !important;
+    height: 32px !important;
 }
 
 /* Hide Burger Menu on Desktop */
