@@ -31,7 +31,7 @@
   border: 1px solid rgba(140, 180, 255, 0.22);
   border-radius: 20px;
   width: 320px;
-  min-height: 360px; /* Adjusted for rectangular images */
+  min-height: 550px; /* Adjusted for rectangular images */
   overflow: visible;
   position: relative;
   -webkit-backdrop-filter: blur(12px);
@@ -197,8 +197,8 @@
 }
 
 .cart-icon svg {
-  width: 28px;
-  height: 28px;
+  width: 14px;
+  height: 14px;
   stroke: currentColor;
   fill: none;
 }
