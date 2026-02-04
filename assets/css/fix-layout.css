@@ -74,8 +74,33 @@
 }
 
 .header-cart-icon img {
-    width: 32px !important;
-    height: 32px !important;
+    width: 16px !important;
+    height: 16px !important;
+}
+
+/* Updated 2026-02-04: User requested cart counter as small blue circle above icon */
+.header-cart-icon {
+    position: relative !important;
+    display: inline-block !important;
+}
+
+.header-cart-count {
+    position: absolute !important;
+    top: -8px !important;
+    right: -8px !important;
+    background-color: #00c2ff !important; /* Blue circle */
+    color: #ffffff !important; /* White text */
+    width: 16px !important;
+    height: 16px !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 10px !important;
+    font-weight: bold !important;
+    line-height: 1 !important;
+    padding: 0 !important;
+    min-width: 0 !important; /* Reset any previous constraints */
 }
 
 /* Hide Burger Menu on Desktop */
