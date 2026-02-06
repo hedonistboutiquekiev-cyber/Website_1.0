@@ -207,16 +207,16 @@
 /* Increase cart icon by 20% relative to previous scale */
 .top-lang-switch .header-cart-icon img {
   display: inline-block;
-  transform: scale(3); /* 2 * 1.2 = 2.4 */
-  transform-origin: center center;
-  transition: transform 150ms ease;
+  /* transform: scale(3); removed */
+  /* transform-origin: center center; removed */
+  /* transition: transform 150ms ease; removed */
 }
 
 .top-lang-switch .lang-flag img {
   display: inline-block;
-  transform: scale(1.5); /* was 2.0, now 25% smaller */
-  transform-origin: center center;
-  transition: transform 150ms ease;
+  /* transform: scale(1.5); removed */
+  /* transform-origin: center center; removed */
+  /* transition: transform 150ms ease; removed */
 }
 
 .top-lang-switch .lang-flag,
@@ -224,16 +224,16 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 6px; /* enlarge hit area to match visual size */
+  padding: 6px; 
 }
 
 /* Slightly reduce on small screens so layout stays usable */
 @media (max-width: 480px) {
   .top-lang-switch .header-cart-icon img {
-    transform: scale(1.8); /* 1.5 * 1.2 = 1.8 */
+    /* transform: scale(1.8); removed */
   }
   .top-lang-switch .lang-flag img {
-    transform: scale(1.125); /* 25% smaller than 1.5 */
+    /* transform: scale(1.125); removed */
   }
 }
 
