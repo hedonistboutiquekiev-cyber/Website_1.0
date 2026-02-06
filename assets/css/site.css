@@ -1733,75 +1733,54 @@ select, select option {
   font-weight: 600;
 }
 
-/* ========================================================
-   ОПТИМИЗАЦИЯ ШАПКИ ДЛЯ МОБИЛЬНЫХ (ВЕРСИЯ 2: ВСЕ ИКОНКИ ВИДНЫ)
-   ======================================================== */
+
+/* =================================================================
+   НОВАЯ ВЕРСИЯ МОБИЛЬНОЙ ШАПКИ (МНОГОУРОВНЕВАЯ КОМПОНОВКА)
+   ================================================================= */
 @media (max-width: 768px) {
 
-  /* 1. Главный контейнер шапки: разрешаем перенос для создания двух рядов */
+  /* 1. Основной контейнер-обертка */
   .header-inner {
-    flex-wrap: wrap; /* Позволяет элементам переноситься на новую строку */
-    justify-content: space-between; /* Логотип слева, меню справа */
-    padding: 10px 15px !important;
-    gap: 15px !important; /* Увеличим отступ между рядами */
+    position: relative !important; /* Включаем режим позиционирования для дочерних элементов */
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 15px !important;
+    /* Оставляем много места внизу для 2-х дополнительных рядов иконок */
+    padding-bottom: 220px !important; 
   }
 
-  /* 2. Настраиваем первый ряд: Логотип */
-  .header-logo {
-    order: 1; /* Логотип будет первым */
-    flex-shrink: 0; /* Запрещаем логотипу сжиматься */
-  }
+  /* 2. Верхний ряд: Логотип (слева, размер не меняется) */
   .header-logo img {
     width: 40px !important;
     height: 40px !important;
-    padding: 0 !important;
   }
   .header-logo img.albaspace-img {
     height: 22px !important;
-    max-height: 26px !important;
   }
 
-  /* 3. Настраиваем первый ряд: Кнопка "бургер-меню" */
-  .menu-toggle {
-    order: 2; /* Бургер будет вторым, справа от логотипа */
-    padding: 8px 12px !important;
-    font-size: 13px !important;
-    gap: 8px !important;
-  }
-
-  /* 4. Настраиваем второй ряд: контейнер со всеми остальными иконками */
-  .header-social {
-    order: 3; /* Этот блок станет третьим и перенесется на новую строку */
-    width: 100%; /* Занимает всю ширину, формируя второй ряд */
-    flex-direction: row;
-    flex-wrap: wrap; /* Разрешаем иконкам внутри этого блока тоже переноситься */
-    justify-content: center; /* Центрируем все иконки во втором ряду */
-    gap: 14px !important;
-    margin-left: 0; /* Сбрасываем ненужный отступ */
-  }
-
-  /* 5. Уменьшаем ВСЕ иконки до единого, адекватного размера */
-  .header-social img,
-  .header-cart-icon img,
-  .ai-widget-toggle img,
-  .alien-ghost img,
-  .top-lang-switch .lang-flag img,
-  .header-flags img {
-    width: 32px !important;
-    height: 32px !important;
+  /* 3. Верхний ряд: Контейнер для правых элементов (Корзина и Бургер) */
+  .header-right-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      position: absolute;
+      top: 15px;
+      right: 15px;
   }
   
-  /* 6. Упорядочиваем группы иконок внутри второго ряда */
-  .header-social .social-row,
-  .header-social .top-lang-switch,
-  .header-social .header-flags {
-    gap: 14px !important;
-    align-items: center; /* Выравниваем по центру вертикально */
+  /* Мы не можем создать .header-right-container без HTML, поэтому стилизуем элементы по отдельности */
+  .menu-toggle {
+      order: 2;
   }
-
-  /* 7. Корректируем позицию счетчика на иконке корзины */
-  .header-cart-icon {
-    position: relative;
+  .header-cart-link {
+      order: 1;
+  }
+  
+  /* 4. Верхний ряд: Корзина (справа, размер НЕ МЕНЯЕТСЯ) */
+  .header-cart-icon img {
+    width: 32px !important;
+    height: 32px !important;
   }
   .header-cart-count {
       font-size: 14px !important;
@@ -1810,5 +1789,71 @@ select, select option {
       line-height: 18px !important;
       right: -8px !important;
       top: -8px !important;
+  }
+
+
+  /* 5. Второй ряд: Иконки ИИ и Пришельца (под логотипом) */
+  /* Мы "вырываем" их из обычного потока и позиционируем абсолютно */
+  .ai-widget-toggle,
+  .alien-dropdown-container {
+    position: absolute;
+    top: 75px; /* (Высота лого + отступ) */
+    z-index: 10;
+  }
+  .ai-widget-toggle {
+    left: 15px; /* Отступ слева */
+  }
+  .alien-dropdown-container {
+    left: 95px; /* (Отступ + ширина иконки ИИ + отступ) */
+  }
+
+  /* 6. Третий ряд: Иконки соцсетей (по центру) */
+  .social-row {
+    position: absolute;
+    bottom: 90px; /* Располагаем над флагами */
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  /* 7. Четвертый ряд: Флаги (внизу, по центру) */
+  .header-flags {
+    position: absolute;
+    bottom: 15px; /* В самом низу */
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  /* 8. Прячем оригинальный контейнер, чтобы иконки не дублировались */
+  .top-lang-switch {
+      display: contents; /* "Растворяем" обертку, чтобы достать дочерние элементы */
+  }
+
+
+  /* 9. >>> УВЕЛИЧЕНИЕ РАЗМЕРОВ ИКОНОК В 2 РАЗА <<< */
+  /* (КРОМЕ ЛОГОТИПА И КОРЗИНЫ) */
+
+  /* ИИ и Пришелец (база 32px * 2 = 64px) */
+  .ai-widget-toggle img,
+  .alien-ghost img {
+    width: 64px !important;
+    height: 64px !important;
+  }
+
+  /* Соцсети (база 32px * 2 = 64px) */
+  .social-row img {
+    width: 64px !important;
+    height: 64px !important;
+  }
+  
+  /* Флаги (база 32px * 2 = 64px) */
+  .header-flags img {
+    width: 64px !important;
+    height: 64px !important;
   }
 }
