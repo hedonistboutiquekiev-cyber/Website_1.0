@@ -1807,8 +1807,8 @@ USER REQUEST: DOUBLE HEADER ELEMENTS SIZE (2x) -- ИСПРАВЛЕНО
 
   /* 9. Увеличиваем нужные иконки */
   .ai-widget-toggle img, .alien-ghost img, .social-row img, .header-flags img {
-    width: 64px !important;
-    height: 64px !important;
+    width: 128px !important;
+    height: 128px !important;
   }
 }
 
