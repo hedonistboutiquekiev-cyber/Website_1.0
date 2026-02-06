@@ -1735,7 +1735,7 @@ select, select option {
 
 
 /* =================================================================
-   НОВАЯ ВЕРСИЯ МОБИЛЬНОЙ ШАПКИ (С УМЕНЬШЕННОЙ КОРЗИНОЙ)
+   ФИНАЛЬНАЯ ВЕРСИЯ МОБИЛЬНОЙ ШАПКИ (ИСПРАВЛЕНА ПРОБЛЕМА С КОРЗИНОЙ)
    ================================================================= */
 @media (max-width: 768px) {
 
@@ -1749,7 +1749,7 @@ select, select option {
     padding-bottom: 220px !important; 
   }
 
-  /* 2. Верхний ряд: Логотип (слева, размер не меняется) */
+  /* 2. Верхний ряд: Логотип (размер не меняется) */
   .header-logo img {
     width: 40px !important;
     height: 40px !important;
@@ -1758,18 +1758,27 @@ select, select option {
     height: 22px !important;
   }
 
-  /* 3. Верхний ряд: Контейнер для правых элементов (Корзина и Бургер) */
+  /* 3. Верхний ряд: Правые элементы */
   .menu-toggle {
       order: 2;
   }
   .header-cart-link {
       order: 1;
+      /* Добавим позиционирование, чтобы иконка не влияла на другие элементы */
+      position: absolute;
+      top: 15px;
+      right: 70px; /* Отодвигаем от края, чтобы освободить место для бургера */
+  }
+  .menu-toggle {
+    position: absolute;
+    top: 15px;
+    right: 15px;
   }
   
-  /* 4. Верхний ряд: Корзина (справа, РАЗМЕР УМЕНЬШЕН В 3 РАЗА) */
+  /* 4. >>> ИСПРАВЛЕНИЕ: ПРИНУДИТЕЛЬНО УМЕНЬШАЕМ КОРЗИНУ <<< */
   .header-cart-icon img {
-    width: 11px !important;  /* Оригинал: 32px -> 11px */
-    height: 11px !important; /* Оригинал: 32px -> 11px */
+    width: 11px !important;  /* Базовый размер ~32px / 3 = 11px */
+    height: 11px !important;
   }
   /* Пропорционально уменьшаем счетчик */
   .header-cart-count {
@@ -1777,8 +1786,8 @@ select, select option {
       width: 12px !important;
       height: 12px !important;
       line-height: 12px !important;
-      right: -6px !important; /* Корректируем позицию */
-      top: -6px !important;   /* Корректируем позицию */
+      right: -6px !important; 
+      top: -6px !important;  
   }
 
   /* 5. Второй ряд: Иконки ИИ и Пришельца (под логотипом) */
@@ -1817,7 +1826,7 @@ select, select option {
     gap: 20px;
   }
 
-  /* 8. Прячем оригинальный контейнер, чтобы иконки не дублировались */
+  /* 8. Прячем обертку, чтобы иконки не дублировались */
   .top-lang-switch {
       display: contents; 
   }
@@ -1831,3 +1840,4 @@ select, select option {
     height: 64px !important;
   }
 }
+
