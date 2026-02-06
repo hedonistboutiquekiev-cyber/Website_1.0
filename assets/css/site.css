@@ -1733,3 +1733,82 @@ select, select option {
   font-weight: 600;
 }
 
+/* ========================================================
+   ОПТИМИЗАЦИЯ ШАПКИ ДЛЯ МОБИЛЬНЫХ (ВЕРСИЯ 2: ВСЕ ИКОНКИ ВИДНЫ)
+   ======================================================== */
+@media (max-width: 768px) {
+
+  /* 1. Главный контейнер шапки: разрешаем перенос для создания двух рядов */
+  .header-inner {
+    flex-wrap: wrap; /* Позволяет элементам переноситься на новую строку */
+    justify-content: space-between; /* Логотип слева, меню справа */
+    padding: 10px 15px !important;
+    gap: 15px !important; /* Увеличим отступ между рядами */
+  }
+
+  /* 2. Настраиваем первый ряд: Логотип */
+  .header-logo {
+    order: 1; /* Логотип будет первым */
+    flex-shrink: 0; /* Запрещаем логотипу сжиматься */
+  }
+  .header-logo img {
+    width: 40px !important;
+    height: 40px !important;
+    padding: 0 !important;
+  }
+  .header-logo img.albaspace-img {
+    height: 22px !important;
+    max-height: 26px !important;
+  }
+
+  /* 3. Настраиваем первый ряд: Кнопка "бургер-меню" */
+  .menu-toggle {
+    order: 2; /* Бургер будет вторым, справа от логотипа */
+    padding: 8px 12px !important;
+    font-size: 13px !important;
+    gap: 8px !important;
+  }
+
+  /* 4. Настраиваем второй ряд: контейнер со всеми остальными иконками */
+  .header-social {
+    order: 3; /* Этот блок станет третьим и перенесется на новую строку */
+    width: 100%; /* Занимает всю ширину, формируя второй ряд */
+    flex-direction: row;
+    flex-wrap: wrap; /* Разрешаем иконкам внутри этого блока тоже переноситься */
+    justify-content: center; /* Центрируем все иконки во втором ряду */
+    gap: 14px !important;
+    margin-left: 0; /* Сбрасываем ненужный отступ */
+  }
+
+  /* 5. Уменьшаем ВСЕ иконки до единого, адекватного размера */
+  .header-social img,
+  .header-cart-icon img,
+  .ai-widget-toggle img,
+  .alien-ghost img,
+  .top-lang-switch .lang-flag img,
+  .header-flags img {
+    width: 32px !important;
+    height: 32px !important;
+  }
+  
+  /* 6. Упорядочиваем группы иконок внутри второго ряда */
+  .header-social .social-row,
+  .header-social .top-lang-switch,
+  .header-social .header-flags {
+    gap: 14px !important;
+    align-items: center; /* Выравниваем по центру вертикально */
+  }
+
+  /* 7. Корректируем позицию счетчика на иконке корзины */
+  .header-cart-icon {
+    position: relative;
+  }
+  .header-cart-count {
+      font-size: 14px !important;
+      width: 18px !important;
+      height: 18px !important;
+      line-height: 18px !important;
+      right: -8px !important;
+      top: -8px !important;
+  }
+}
