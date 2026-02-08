@@ -1,143 +1,121 @@
 /* Fix for Header Icons and Layout */
 
-/* ===== ICON SIZE STANDARDIZATION ===== */
-/* Apply consistent size to ALL header icons */
-.header-social img,
-.top-lang-switch img,
-.header-cart-icon img,
-.header-flags img {
-    width: 20px !important;
-    height: 20px !important;
-    max-width: none !important;
-    object-fit: contain !important;
-    transform: none !important; /* Ensure no scaling remains */
-}
-
-/* Specific override for cart icon inside the link */
-.header-cart-link .header-cart-icon img {
-    width: 20px !important;
-    height: 20px !important;
-}
-
-/* Remove 5px !important if it exists anywhere else or just override it here */
-
-/* ===== HEADER LEFT SECTION (Logo + Flags) ===== */
-.header-left-section {
+/* ===== LOGO & SYSTEM ICONS REPOSITIONING ===== */
+.header-logo-container {
     display: flex !important;
     flex-direction: column !important;
-    align-items: center !important;
+    align-items: flex-start !important;
     gap: 4px !important;
-    margin-right: auto !important; /* Push everything else to right */
 }
 
-/* Logo Sizing - Reduced by 2x as requested */
-/* Original was ~40px circle and ~22px text */
-.header-logo img:first-child {
-    width: 20px !important; /* 40px / 2 */
-    height: 20px !important;
-    padding: 2px !important; /* Reduce padding too */
-}
-
-.header-logo .albaspace-img {
-    height: 11px !important; /* 22px / 2 */
-    max-height: 11px !important;
-}
-
-/* Flags Layout */
-.header-flags {
-    display: flex !important;
-    flex-direction: row !important;
-    gap: 4px !important;
-    justify-content: center !important;
-}
-
-.header-flags img {
-    width: 14px !important; /* Slightly smaller for flags if needed, or keep 20px */
-    height: 14px !important;
-}
-
-/* ===== HEADER RIGHT SECTION (Socials + Cart + AI + Alien) ===== */
-.header-social {
-    display: flex !important;
-    align-items: center !important;
-    gap: 15px !important; /* Separation between Social Row and Tool Row */
-}
-
-/* Social Row (Insta, Linkedin, WA, YT) */
-.social-row {
+.logo-sub-icons {
     display: flex !important;
     flex-direction: row !important;
     gap: 8px !important;
-    align-items: center !important;
+    margin-top: 2px !important;
+    padding-left: 4px !important;
 }
 
-/* Top Lang Switch (AI, Cart, Alien) - Renamed conceptually to "Tools" */
-.top-lang-switch {
-    display: flex !important;
-    flex-direction: row !important;
-    gap: 12px !important; /* Space between AI, Cart, Alien */
-    align-items: center !important;
+.logo-sub-icons img {
+    width: 14px !important;
+    height: 14px !important;
+    opacity: 0.8;
+    transition: opacity 0.2s;
 }
 
-/* Ensure items are centered */
-.top-lang-switch a,
+.logo-sub-icons img:hover {
+    opacity: 1;
+}
+
+/* Hide original AI/Alien in the right switch to avoid duplicates */
 .top-lang-switch .ai-widget-toggle,
-.top-lang-switch .alien-ghost,
-.alien-dropdown-container {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+.top-lang-switch .alien-dropdown-container {
+    display: none !important;
 }
 
-/* Cart Specific Position */
-/* User asked for cart separately in right part. 
-   It is already in .top-lang-switch which is in .header-social on the right.
-   We just ensure it has breathing room.
-*/
+/* ===== DESKTOP LAYOUT (1025px and above) ===== */
+@media (min-width: 1025px) {
+    .header-social {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 6px !important;
+    }
+
+    .header-social .social-row {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 6px !important;
+        align-items: center !important;
+    }
+
+    .header-social a img {
+        width: 16px !important;
+        height: 16px !important;
+    }
+
+    .top-lang-switch {
+        display: grid !important;
+        grid-template-columns: repeat(4, auto) !important;
+        gap: 6px !important;
+        align-items: center !important;
+    }
+
+    .header-cart-icon img {
+        width: 5px !important;
+        height: 5px !important;
+    }
+
+    .menu-toggle {
+        display: none !important;
+    }
+
+    .header-inner {
+        flex-wrap: nowrap !important;
+    }
+}
 
 /* ===== MOBILE LAYOUT (max-width: 1024px) ===== */
 @media (max-width: 1024px) {
     .header-inner {
-        flex-wrap: nowrap !important; /* Try to keep in one line if possible */
-        justify-content: space-between !important;
-    }
-
-    /* Hide text logo on very small screens if needed, or keep it */
-    
-    .header-social {
-        gap: 10px !important;
-    }
-
-    .social-row {
-        gap: 6px !important;
-    }
-    
-    .top-lang-switch {
+        flex-wrap: wrap !important;
         gap: 8px !important;
     }
-    
-    /* Slightly smaller icons on mobile */
-    .header-social img,
-    .top-lang-switch img,
-    .header-cart-icon img,
-    .header-flags img {
-        width: 18px !important;
-        height: 18px !important;
+
+    .main-nav {
+        order: 3 !important;
+        width: 100% !important;
+        margin: 8px 0 !important;
     }
-    
-    .header-flags img {
-        width: 12px !important;
-        height: 12px !important;
+
+    .header-social {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 4px !important;
+        order: 2 !important;
+    }
+
+    .header-social a img {
+        width: 14px !important;
+        height: 14px !important;
+    }
+
+    .top-lang-switch {
+        display: flex !important;
+        flex-direction: row !important;
+        gap: 4px !important;
+        align-items: center !important;
+        order: 1 !important;
+    }
+
+    .header-cart-icon img {
+        width: 5px !important;
+        height: 5px !important;
     }
 }
 
-/* ===== BURGER MENU ===== */
-/* Ensure burger doesn't conflict */
-.menu-toggle {
-    margin-left: 10px !important;
-}
-
-/* ===== ALIEN DROPDOWN FIX ===== */
+/* ===== COMMON STYLES ===== */
 .alien-dropdown-container {
     position: relative !important;
     z-index: 9999 !important;
@@ -148,11 +126,9 @@
     position: absolute !important;
 }
 
-/* Footer Icon Size Restoration (keep these large) */
 .footer-social img {
     width: 24px !important;
     height: 24px !important;
-    max-width: none !important;
 }
 
 .footer-social--xl img {

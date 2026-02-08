@@ -1,17 +1,28 @@
 
-
 <header class="site-header">
   <div class="header-inner">
 
-    <!-- Left Section: Logo + Flags -->
-    <div class="header-left-section">
-      <!-- Logo -->
-      <a href="/index.html" class="header-logo">
+    <!-- Logo -->
+    <div class="header-logo-container">
+      <a href="/eng/index.html" class="header-logo">
         <img src="/assets/images/albalogo.png" alt="AlbaSpace Logo">
         <img src="/assets/images/albaspace.png" alt="AlbaSpace" class="albaspace-img">
       </a>
-
-      <!-- Flags Separated (Removed) -->
+      <!-- Sub-icons under logo -->
+      <div class="logo-sub-icons">
+        <a href="#" class="ai-widget-toggle" aria-label="AI widget" title="AI">
+          <img src="/assets/images/albamenai.png" alt="AI">
+        </a>
+        <div class="alien-dropdown-container" style="position: relative; display: inline-block;">
+          <a href="#" class="alien-ghost" aria-label="Alien" title="LogIn" onclick="toggleAlienMenu(event)">
+            <img src="/assets/icons/alien.png" alt="LogIn">
+          </a>
+          <div id="alienMenu" style="display: none; position: absolute; left: 0; top: 120%; background: rgba(2, 6, 23, 0.95); border: 1px solid rgba(0, 194, 255, 0.3); border-radius: 12px; padding: 12px; min-width: 140px; backdrop-filter: blur(10px); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); z-index: 99999;">
+             <a href="#" class="alien-menu-item">Sign In</a>
+             <a href="/eng/signup.html" class="alien-menu-item">Sign Up</a>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- BURGER -->
@@ -36,7 +47,6 @@
       <a href="/eng/basindabiz.html">PRESS</a>
       <a href="/eng/galeri.html">GALLERY</a>
       <a href="/eng/iletisim.html">CONTACT</a>
-
     </nav>
 
     <!-- Social icons -->
@@ -45,16 +55,12 @@
         <a href="https://www.instagram.com/albaspace_/" target="_blank" aria-label="Instagram" data-track="inst">
           <img src="/assets/icons/inst.png" alt="Instagram">
         </a>
-
         <a href="https://www.linkedin.com/in/idrisalbayrak/" target="_blank" aria-label="LinkedIn">
           <img src="/assets/icons/linkdin.png" alt="LinkedIn">
         </a>
-
-        <!-- WhatsApp -->
         <a href="https://wa.me/905387781018" target="_blank" aria-label="WhatsApp" data-track="whatsapp">
           <img src="/assets/icons/watsupp.png" alt="WhatsApp">
         </a>
-
         <a href="https://www.youtube.com/@AlbaSpaceTr" target="_blank" aria-label="YouTube">
           <img src="/assets/icons/youtube.png" alt="YouTube">
         </a>
@@ -62,11 +68,6 @@
 
       <!-- Language switch -->
       <div class="top-lang-switch">
-        <!-- AI widget toggle: placed to the left of cart -->
-        <a href="#" class="ai-widget-toggle" aria-label="AI widget" title="AI">
-          <img src="/assets/images/albamenai.png" alt="AI" />
-        </a>
-
         <a href="/eng/cart.html" class="lang-flag header-cart-link" aria-label="Cart">
           <span class="header-cart-icon">
             <img src="/assets/icons/chart.png" alt="Cart">
@@ -74,42 +75,6 @@
           </span>
         </a>
 
-        <!-- Alien placeholder button (glowing neon) to the right of cart -->
-        <div class="alien-dropdown-container" style="position: relative;">
-          <a href="#" class="alien-ghost" aria-label="Alien" title="Alien" onclick="toggleAlienMenu(event)">
-            <img src="/assets/icons/alien.png" alt="Alien">
-          </a>
-          <div id="alienMenu" style="display: none; position: absolute; right: 0; top: 120%; background: rgba(2, 6, 23, 0.95); border: 1px solid rgba(0, 194, 255, 0.3); border-radius: 12px; padding: 12px; min-width: 140px; backdrop-filter: blur(10px); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); z-index: 99999;">
-             <a href="#" class="alien-menu-item">Sign In</a>
-             <a href="/eng/signup.html" class="alien-menu-item">Sign Up</a>
-          </div>
-        </div>
-        <style>
-          .alien-menu-item { display: block; color: white; padding: 8px 12px; text-decoration: none; font-size: 14px; transition: color 0.2s; white-space: nowrap; }
-          .alien-menu-item:hover { color: #00c2ff; }
-        </style>
-        <script>
-          function toggleAlienMenu(e) {
-            e.preventDefault();
-            const menu = document.getElementById('alienMenu');
-            if (menu.style.display === 'none') {
-              menu.style.display = 'block';
-            } else {
-              menu.style.display = 'none';
-            }
-          }
-          document.addEventListener('click', function(e) {
-            const container = document.querySelector('.alien-dropdown-container');
-            const menu = document.getElementById('alienMenu');
-            if (container && !container.contains(e.target) && menu && menu.style.display === 'block') {
-              menu.style.display = 'none';
-            }
-          });
-        </script>
-      </div>
-
-      <!-- Flags Separated -->
-      <div class="header-flags">
         <a href="/index.html" data-lang="tr" class="lang-flag" aria-label="Türkçe">
           <img src="/assets/icons/flag-tr.png" alt="Türkçe" />
         </a>
@@ -136,3 +101,21 @@
 <script src="/assets/js/lang-switch.js" defer></script>
 <script src="/assets/js/ai-widget.js" defer></script>
 <script src="/assets/js/model-nav-loader.js" defer></script>
+<script>
+  function toggleAlienMenu(e) {
+    e.preventDefault();
+    const menu = document.getElementById('alienMenu');
+    if (menu.style.display === 'none') {
+      menu.style.display = 'block';
+    } else {
+      menu.style.display = 'none';
+    }
+  }
+  document.addEventListener('click', function(e) {
+    const container = document.querySelector('.alien-dropdown-container');
+    const menu = document.getElementById('alienMenu');
+    if (container && !container.contains(e.target) && menu && menu.style.display === 'block') {
+      menu.style.display = 'none';
+    }
+  });
+</script>
