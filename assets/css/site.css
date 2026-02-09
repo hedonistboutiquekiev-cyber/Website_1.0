@@ -84,29 +84,77 @@ body{
 
 }
 
+/* ... (начало вашего файла без изменений до мобильного медиа-запроса) ... */
+
 /* Fix background attachment on mobile devices */
-
 @media (max-width: 767px) {
-
   body {
-
-    /* Force scrolling attachment to prevent zoom/stretch on iOS */
-
     background-attachment: scroll !important;
-
-    /* Use a dark-blue gradient background on mobile (dark -> slightly lighter) */
-
     background-image: none !important;
-
-    /* Keep positioning safe, but use gradient as primary background */
-
     background-position: center center !important;
-
     background-size: auto !important;
-
     background: #020617 !important;
-
   }
+
+  body.home-page, body.index-page {
+    background: #020617 !important;
+  }
+
+  /* =========================================
+     MOBILE CLEANUP: Убираем голубые подложки
+     (Для страниц Видео, Галерея, Магазин, Корзина)
+     ========================================= */
+  
+  /* Убираем синие фоны и свечения у карточек видео, галереи и товаров */
+  .video-card, 
+  .video-item, 
+  .gallery-item, 
+  .gallery-category, 
+  .product-card, 
+  .shop-item,
+  .cart-item,
+  .basket-item,
+  .content-block,
+  section[class*="section"] {
+    background: transparent !important;
+    background-image: none !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important; /* Оставляем только тонкую рамку */
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  /* Специфическое исправление для корзины (Sepet), если там используются градиенты */
+  .cart-item, .basket-item-row {
+    background: rgba(255, 255, 255, 0.03) !important; /* Очень легкий серый вместо синего */
+    border-radius: 12px !important;
+    margin-bottom: 10px !important;
+  }
+
+  /* Исправление для страницы "Basında Biz" — убираем синий контур у видео-контейнеров */
+  .video-list-container, .media-grid-item {
+    background: none !important;
+    padding: 0 !important;
+  }
+
+  /* Если кнопки или теги внутри блоков тоже имеют синий фон, делаем их спокойнее */
+  .category-tag, .video-label {
+    background: rgba(0, 194, 255, 0.1) !important;
+    border: 1px solid #00c2ff !important;
+  }
+
+  /* ========================================= */
+
+  /* Hide the original nav in the header */
+  .header-inner .main-nav {
+    display: none !important;
+  }
+}
+
+/* ... (остальной код файла ниже без изменений) ... */
+
+
+
 
   /* Apply same dark-blue gradient to index/home pages on mobile */
 
