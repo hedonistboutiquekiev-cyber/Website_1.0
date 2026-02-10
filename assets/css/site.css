@@ -166,17 +166,58 @@ body{
 
 }
 
-/* Restore fixed background on larger screens (desktop/tablet) */
-
-@media (min-width: 768px) {
-
+/* Fix background attachment on mobile devices */
+@media (max-width: 767px) {
   body {
-
-    background: #020617 url('/assets/images/space-bg11.jpg') center/cover no-repeat !important;
-
+    /* На мобильном: убираем картинку, оставляем темно-синий цвет */
+    background-attachment: scroll !important;
+    background-image: none !important;
+    background-position: center center !important;
+    background-size: auto !important;
+    background: #020617 !important;
   }
 
+  body.home-page, body.index-page {
+    background: #020617 !important;
+  }
+
+  /* === МОБИЛЬНАЯ ЧИСТКА: Убираем голубые подложки у блоков === */
+  .video-card, 
+  .video-item, 
+  .gallery-item, 
+  .gallery-category, 
+  .product-card, 
+  .shop-item,
+  .cart-item,
+  .basket-item,
+  .content-block,
+  section[class*="section"],
+  div[class*="card"] {
+    background: transparent !important; /* Прозрачный фон */
+    background-image: none !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important; /* Тонкая рамка */
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+  }
+  
+  /* Убираем фон у контейнеров видео и галерей */
+  .video-list-container, 
+  .media-grid-item {
+    background: none !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+  }
 }
+
+/* Restore fixed background on larger screens (desktop/tablet) */
+@media (min-width: 768px) {
+  body {
+    /* На ПК: Возвращаем твою картинку космоса */
+    background: #020617 url('/assets/images/space-bg11.jpg') center/cover no-repeat !important;
+    background-attachment: fixed !important;
+  }
+}
+
 
 /* Fix for dropdown options visibility on dark themes */
 select, select option {
